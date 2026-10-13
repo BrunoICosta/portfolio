@@ -1,0 +1,104 @@
+/*
+ * Design tokens. Light theme is the base; dark theme overrides the color
+ * tokens through [data-theme='dark'] on <html>.
+ */
+:root {
+  color-scheme: light;
+
+  /* Palette */
+  --color-bg: #f6f5f1;
+  --color-bg-elevated: #ffffff;
+  --color-surface: #efede7;
+  --color-border: #dedad0;
+  --color-border-strong: #c7c2b4;
+  --color-text: #17181c;
+  --color-text-muted: #55565e;
+  --color-text-subtle: #6b6c73;
+  --color-accent: #4338ca;
+  --color-accent-hover: #3730a3;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft: #e4e3fb;
+  --color-angular: #c3002f;
+  --color-angular-soft: #fbe3e9;
+  --color-react: #0a6f8f;
+  --color-react-soft: #dcf1f8;
+  --color-focus: #4338ca;
+  --color-glow-1: rgb(99 102 241 / 0.22);
+  --color-glow-2: rgb(20 158 202 / 0.18);
+  --color-glow-3: rgb(221 0 49 / 0.12);
+
+  /* Typography */
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-mono:
+    ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  --text-hero: clamp(2.5rem, 1.6rem + 4.6vw, 5rem);
+  --leading-tight: 1.1;
+  --leading-normal: 1.6;
+
+  /* Spacing (4px scale) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Shape & depth */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgb(23 24 28 / 0.06);
+  --shadow-md: 0 6px 24px -8px rgb(23 24 28 / 0.18);
+  --shadow-lg: 0 18px 48px -16px rgb(23 24 28 / 0.28);
+
+  /* Layout */
+  --container-max: 72rem;
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
+  --header-height: 4rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #0e0f13;
+  --color-bg-elevated: #16171d;
+  --color-surface: #1c1d25;
+  --color-border: #2a2b35;
+  --color-border-strong: #3a3b48;
+  --color-text: #ecebe6;
+  --color-text-muted: #a9a9b3;
+  --color-text-subtle: #8d8d98;
+  --color-accent: #a5a6ff;
+  --color-accent-hover: #c3c4ff;
+  --color-accent-contrast: #12122a;
+  --color-accent-soft: #24244a;
+  --color-angular: #ff6b8a;
+  --color-angular-soft: #3a1520;
+  --color-react: #5fd3f3;
+  --color-react-soft: #0f2c36;
+  --color-focus: #a5a6ff;
+  --color-glow-1: rgb(99 102 241 / 0.28);
+  --color-glow-2: rgb(20 158 202 / 0.2);
+  --color-glow-3: rgb(221 0 49 / 0.14);
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 8px 28px -10px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 20px 50px -18px rgb(0 0 0 / 0.75);
+}
