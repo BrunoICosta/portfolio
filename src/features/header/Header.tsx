@@ -25,7 +25,7 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <a href="#top" className={styles.logo} aria-label={t.header.homeLink}>
+        <a href="#content" className={styles.logo} aria-label={t.header.homeLink}>
           <span className={styles.mark} aria-hidden="true">
             BC
           </span>
