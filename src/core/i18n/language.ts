@@ -18,3 +18,10 @@ export function getInitialLanguage(): Language {
   const stored = readStorage(LANGUAGE_STORAGE_KEY)
   return isLanguage(stored) ? stored : DEFAULT_LANGUAGE
 }
+
+/** Text that is either language-neutral (e.g. "TypeScript") or translated per language. */
+export type Translatable = string | Localized
+
+export function translate(text: Translatable, language: Language): string {
+  return typeof text === 'string' ? text : text[language]
+}
