@@ -2,6 +2,7 @@ import { MAIN_CONTENT_ID } from './core/sections'
 import { About } from './features/about/About'
 import { Header } from './features/header/Header'
 import { Hero } from './features/hero/Hero'
+import { ProjectsSection } from './features/projects/ProjectsSection'
 import { Skills } from './features/skills/Skills'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Hero />
         <About />
         <Skills />
+        <ProjectsSection />
       </main>
     </>
   )
