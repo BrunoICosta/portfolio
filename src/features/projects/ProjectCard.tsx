@@ -3,6 +3,7 @@ import { getDemoUrl, getRepoUrl, type Project } from '../../data/projects'
 import { ExternalLink } from '../../shared/components/ExternalLink'
 import { Icon } from '../../shared/components/Icon'
 import styles from './ProjectCard.module.css'
+import { ProjectScreenshot } from './ProjectScreenshot'
 
 interface ProjectCardProps {
   project: Project
@@ -14,6 +15,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <article className={styles.card} data-category={project.category} aria-labelledby={titleId}>
+      <ProjectScreenshot project={project} />
       <div className={styles.body}>
         <p className={styles.category}>{t.projects.filters[project.category]}</p>
         <h3 id={titleId} className={styles.title}>
