@@ -1,4 +1,5 @@
 import { useI18n } from '../../core/i18n/useI18n'
+import { Reveal } from '../../shared/motion/Reveal'
 import section from '../../shared/styles/section.module.css'
 import styles from './About.module.css'
 
@@ -16,18 +17,18 @@ export function About() {
         </header>
 
         <div className={styles.layout}>
-          <div className={styles.text}>
+          <Reveal className={styles.text}>
             {t.about.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
-          </div>
+          </Reveal>
 
           <dl className={styles.highlights}>
             {t.about.highlights.map(({ value, label }) => (
-              <div key={label} className={styles.highlight}>
+              <Reveal key={label} className={styles.highlight} delay={0.1}>
                 <dt className={styles.label}>{label}</dt>
                 <dd className={styles.value}>{value}</dd>
-              </div>
+              </Reveal>
             ))}
           </dl>
         </div>

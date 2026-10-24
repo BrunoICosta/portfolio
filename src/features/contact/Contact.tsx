@@ -3,6 +3,7 @@ import { LINKEDIN_URL, PROFILE } from '../../data/profile'
 import { ExternalLink } from '../../shared/components/ExternalLink'
 import { Icon } from '../../shared/components/Icon'
 import { useCopyToClipboard } from '../../shared/hooks/useCopyToClipboard'
+import { Reveal } from '../../shared/motion/Reveal'
 import section from '../../shared/styles/section.module.css'
 import styles from './Contact.module.css'
 
@@ -13,7 +14,7 @@ export function Contact() {
   return (
     <section id="contact" className={section.section} aria-labelledby="contact-title">
       <div className="container">
-        <div className={styles.panel}>
+        <Reveal className={styles.panel}>
           <header className={section.header}>
             <p className={section.eyebrow}>04 · {t.contact.title}</p>
             <h2 id="contact-title" className={section.title}>
@@ -61,7 +62,7 @@ export function Contact() {
               </li>
             )}
           </ul>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

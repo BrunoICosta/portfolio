@@ -1,3 +1,4 @@
+import { m } from 'motion/react'
 import { useI18n } from '../../core/i18n/useI18n'
 import { PROFILE } from '../../data/profile'
 import { ButtonLink } from '../../shared/components/ButtonLink'
@@ -29,7 +30,12 @@ export function Hero() {
 
           <p className={styles.tagline}>{t.hero.tagline}</p>
 
-          <div className={styles.ctas}>
+          <m.div
+            className={styles.ctas}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
             <ButtonLink href="#projects">
               {t.hero.ctaProjects}
               <Icon name="arrowRight" size={16} />
@@ -37,7 +43,7 @@ export function Hero() {
             <ButtonLink href="#contact" variant="secondary">
               {t.hero.ctaContact}
             </ButtonLink>
-          </div>
+          </m.div>
         </div>
 
         <CodeCard />
@@ -94,7 +100,13 @@ const CODE_LINES: readonly (readonly Token[])[] = [
 /** Decorative "profile as code" card; hidden from assistive tech (the copy already says it). */
 function CodeCard() {
   return (
-    <div className={styles.codeCard} aria-hidden="true">
+    <m.div
+      className={styles.codeCard}
+      aria-hidden="true"
+      initial={{ opacity: 0, y: 24, rotate: -1.5 }}
+      animate={{ opacity: 1, y: 0, rotate: 0 }}
+      transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className={styles.codeBar}>
         <span />
         <span />
@@ -114,6 +126,6 @@ function CodeCard() {
           ))}
         </code>
       </pre>
-    </div>
+    </m.div>
   )
 }

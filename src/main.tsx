@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import { I18nProvider } from './core/i18n/I18nProvider.tsx'
 import { ThemeProvider } from './core/theme/ThemeProvider.tsx'
+import { MotionProvider } from './shared/motion/MotionProvider.tsx'
 import './styles/global.css'
 
 const container = document.getElementById('root')
@@ -12,7 +13,9 @@ createRoot(container).render(
   <StrictMode>
     <ThemeProvider>
       <I18nProvider>
-        <App />
+        <MotionProvider>
+          <App />
+        </MotionProvider>
       </I18nProvider>
     </ThemeProvider>
   </StrictMode>,

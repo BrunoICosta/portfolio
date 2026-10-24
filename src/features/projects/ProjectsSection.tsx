@@ -1,6 +1,8 @@
+import { m } from 'motion/react'
 import { useMemo, useState } from 'react'
 import { useI18n } from '../../core/i18n/useI18n'
 import { PROJECTS } from '../../data/projects'
+import { fadeUp, revealTransition } from '../../shared/motion/variants'
 import section from '../../shared/styles/section.module.css'
 import { countByFilter, filterProjects, type ProjectFilter } from './filterProjects'
 import { ProjectCard } from './ProjectCard'
@@ -36,10 +38,17 @@ export function ProjectsSection() {
           <p className={styles.empty}>{t.projects.empty}</p>
         ) : (
           <ul className={styles.grid}>
-            {visible.map((project) => (
-              <li key={project.repo}>
+            {visible.map((project, index) => (
+              <m.li
+                key={`${filter}-${project.repo}`}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ ...revealTransition, delay: (index % 3) * 0.06 }}
+              >
                 <ProjectCard project={project} />
-              </li>
+              </m.li>
             ))}
           </ul>
         )}

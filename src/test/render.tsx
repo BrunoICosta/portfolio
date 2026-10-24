@@ -2,11 +2,14 @@ import { render, type RenderOptions } from '@testing-library/react'
 import type { ReactElement, ReactNode } from 'react'
 import { I18nProvider } from '../core/i18n/I18nProvider'
 import { ThemeProvider } from '../core/theme/ThemeProvider'
+import { MotionProvider } from '../shared/motion/MotionProvider'
 
 function Providers({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider>
-      <I18nProvider>{children}</I18nProvider>
+      <I18nProvider>
+        <MotionProvider>{children}</MotionProvider>
+      </I18nProvider>
     </ThemeProvider>
   )
 }
