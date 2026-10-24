@@ -1,0 +1,117 @@
+.panel {
+  position: relative;
+  isolation: isolate;
+  padding: var(--space-7) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius-lg) * 1.5);
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(28rem 18rem at 100% 0%, var(--color-glow-1), transparent 70%),
+    radial-gradient(24rem 16rem at 0% 100%, var(--color-glow-2), transparent 70%);
+}
+
+.emailRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+.email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 100%;
+  color: var(--color-text);
+  font-size: clamp(1.05rem, 0.7rem + 1.6vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+  overflow-wrap: anywhere;
+}
+
+.email:hover {
+  color: var(--color-accent);
+}
+
+.email svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.copy {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.5rem;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-elevated);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
+}
+
+.copy:hover {
+  background: var(--color-surface);
+}
+
+.copy[data-status='copied'] {
+  border-color: #16a34a;
+}
+
+.copyStatus {
+  flex-basis: 100%;
+  min-height: 1.5em;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding: 0;
+  list-style: none;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity var(--duration-fast) ease;
+}
+
+.social:hover {
+  opacity: 0.88;
+}
+
+@media (min-width: 48rem) {
+  .panel {
+    padding: var(--space-8);
+  }
+}
