@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { useI18n } from '../../core/i18n/useI18n'
 import { SECTION_IDS } from '../../core/sections'
 import { useTheme } from '../../core/theme/useTheme'
@@ -10,20 +10,29 @@ export function Header() {
   const { theme, toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
   const menuId = useId()
+  const headerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     if (!menuOpen) return
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setMenuOpen(false)
     }
+    // Close the mobile menu when the user taps anywhere outside the header.
+    const onPointerDown = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setMenuOpen(false)
+    }
     window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+    window.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('pointerdown', onPointerDown)
+    }
   }, [menuOpen])
 
   const isDark = theme === 'dark'
 
   return (
-    <header className={styles.header}>
+    <header ref={headerRef} className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <a href="#content" className={styles.logo} aria-label={t.header.homeLink}>
           <span className={styles.mark} aria-hidden="true">
