@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
-import { afterEach } from 'vitest'
+import { afterEach, beforeEach, vi } from 'vitest'
 
 // jsdom lacks these browser APIs; motion's whileInView and theme detection rely on them.
 class IntersectionObserverStub implements IntersectionObserver {
@@ -29,6 +29,11 @@ if (!window.matchMedia) {
     dispatchEvent: () => false,
   })
 }
+
+// jsdom reports en-US; most tests assert the pt-BR default, so pin the browser language.
+beforeEach(() => {
+  vi.spyOn(navigator, 'languages', 'get').mockReturnValue(['pt-BR'])
+})
 
 afterEach(() => {
   cleanup()

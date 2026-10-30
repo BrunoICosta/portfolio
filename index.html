@@ -68,7 +68,8 @@
     </script>
 
     <script>
-      // Apply the saved/OS theme before first paint to avoid a flash of the wrong theme.
+      // Apply the saved/OS theme (and the saved/browser language to <html lang>) before
+      // first paint. Mirrors getInitialTheme/getInitialLanguage in src/core.
       ;(function () {
         try {
           var stored = localStorage.getItem('bc-theme')
@@ -79,6 +80,13 @@
                 ? 'dark'
                 : 'light'
           document.documentElement.dataset.theme = theme
+
+          var lang = localStorage.getItem('bc-lang')
+          if (lang !== 'pt-BR' && lang !== 'en') {
+            var preferred = (navigator.languages && navigator.languages[0]) || navigator.language
+            lang = !preferred || /^pt/i.test(preferred) ? 'pt-BR' : 'en'
+          }
+          document.documentElement.lang = lang
         } catch (e) {
           document.documentElement.dataset.theme = 'light'
         }

@@ -16,8 +16,7 @@ const ptBR = {
     themeToDark: 'Ativar tema escuro',
     themeToLight: 'Ativar tema claro',
     menu: 'Abrir menu de navegação',
-    switchLanguage: 'Switch to English',
-    languageShort: 'EN',
+    languageLabel: 'Idioma',
   },
   nav: {
     about: 'Sobre',
@@ -110,8 +109,7 @@ const en: Dictionary = {
     themeToDark: 'Switch to dark theme',
     themeToLight: 'Switch to light theme',
     menu: 'Open navigation menu',
-    switchLanguage: 'Mudar para português',
-    languageShort: 'PT',
+    languageLabel: 'Language',
   },
   nav: {
     about: 'About',

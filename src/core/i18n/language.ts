@@ -13,10 +13,32 @@ export function isLanguage(value: unknown): value is Language {
   return typeof value === 'string' && (LANGUAGES as readonly string[]).includes(value)
 }
 
-/** pt-BR is the default audience; English only when the visitor picked it before. */
+/** Short label and native name, shown in the language switcher. */
+export const LANGUAGE_LABELS: Record<Language, { short: string; name: string }> = {
+  'pt-BR': { short: 'PT', name: 'Português' },
+  en: { short: 'EN', name: 'English' },
+}
+
+/**
+ * Maps the browser's preferred languages to a supported one:
+ * any "pt*" tag -> pt-BR, anything else -> en. No preference -> null.
+ */
+export function detectBrowserLanguage(preferred: readonly string[]): Language | null {
+  const first = preferred.find(Boolean)
+  if (!first) return null
+  return first.toLowerCase().startsWith('pt') ? 'pt-BR' : 'en'
+}
+
+function browserLanguages(): readonly string[] {
+  if (typeof navigator === 'undefined') return []
+  return navigator.languages?.length ? navigator.languages : [navigator.language]
+}
+
+/** Resolution order: saved choice > browser language > pt-BR. */
 export function getInitialLanguage(): Language {
   const stored = readStorage(LANGUAGE_STORAGE_KEY)
-  return isLanguage(stored) ? stored : DEFAULT_LANGUAGE
+  if (isLanguage(stored)) return stored
+  return detectBrowserLanguage(browserLanguages()) ?? DEFAULT_LANGUAGE
 }
 
 /** Text that is either language-neutral (e.g. "TypeScript") or translated per language. */
