@@ -69,6 +69,7 @@ const ptBR = {
     screenshotAlt: (title: string) => `Captura de tela do projeto ${title}`,
     screenshotFallback: 'Prévia indisponível',
     techLabel: 'Tecnologias',
+    uiLanguages: (names: string) => `Interface disponível em: ${names}`,
     empty: 'Nenhum projeto encontrado para este filtro.',
   },
   contact: {
@@ -162,6 +163,7 @@ const en: Dictionary = {
     screenshotAlt: (title: string) => `Screenshot of the ${title} project`,
     screenshotFallback: 'Preview unavailable',
     techLabel: 'Technologies',
+    uiLanguages: (names: string) => `Interface available in: ${names}`,
     empty: 'No projects found for this filter.',
   },
   contact: {

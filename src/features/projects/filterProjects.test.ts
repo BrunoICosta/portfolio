@@ -2,11 +2,16 @@ import { describe, expect, it } from 'vitest'
 import { PROJECTS, type Project } from '../../data/projects'
 import { countByFilter, filterProjects } from './filterProjects'
 
-const sample: Project[] = [
-  { repo: 'a', title: 'A', category: 'angular', description: { 'pt-BR': '', en: '' }, tech: [] },
-  { repo: 'b', title: 'B', category: 'react', description: { 'pt-BR': '', en: '' }, tech: [] },
-  { repo: 'c', title: 'C', category: 'react', description: { 'pt-BR': '', en: '' }, tech: [] },
-]
+const project = (repo: string, category: Project['category']): Project => ({
+  repo,
+  title: repo.toUpperCase(),
+  category,
+  description: { 'pt-BR': '', en: '' },
+  tech: [],
+  uiLanguages: ['pt-BR', 'en'],
+})
+
+const sample: Project[] = [project('a', 'angular'), project('b', 'react'), project('c', 'react')]
 
 describe('filterProjects', () => {
   it('returns every project for "all"', () => {
