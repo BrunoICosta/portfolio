@@ -25,8 +25,7 @@ export function Contact() {
           <a href={`mailto:${PROFILE.email}`} className={styles.email}>
             <Icon name="mail" size={22} />
             <span>
-              <span className="visually-hidden">{t.contact.email}: </span>
-              {PROFILE.email}
+              <span className="visually-hidden">{t.contact.email}:</span> {PROFILE.email}
             </span>
           </a>
           <button

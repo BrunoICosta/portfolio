@@ -14,8 +14,7 @@ export function ExternalLink({ children, ...rest }: ExternalLinkProps) {
   const { t } = useI18n()
   return (
     <a target="_blank" rel="noopener noreferrer" {...rest}>
-      {children}
-      <span className="visually-hidden"> {t.a11y.opensInNewTab}</span>
+      {children} <span className="visually-hidden">{t.a11y.opensInNewTab}</span>
     </a>
   )
 }

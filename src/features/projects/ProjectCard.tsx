@@ -47,13 +47,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className={styles.links}>
         <ExternalLink href={getRepoUrl(project)} className={styles.link}>
           <Icon name="github" size={16} />
-          {t.projects.code}
-          <span className="visually-hidden"> — {project.title}</span>
+          {t.projects.code} <span className="visually-hidden">— {project.title}</span>
         </ExternalLink>
         <ExternalLink href={getDemoUrl(project)} className={styles.link} data-primary="true">
           <Icon name="external" size={16} />
-          {t.projects.demo}
-          <span className="visually-hidden"> — {project.title}</span>
+          {t.projects.demo} <span className="visually-hidden">— {project.title}</span>
         </ExternalLink>
       </div>
     </article>
