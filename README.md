@@ -1,5 +1,7 @@
 # Bruno Costa — Portfólio
 
+> **English:** [README.en.md](./README.en.md)
+
 Site pessoal de **Bruno Vinicius Isaac Costa**, desenvolvedor front-end (Angular & React). Uma página
 única, rápida e acessível que apresenta quem sou, minhas habilidades e uma vitrine filtrável dos meus
 projetos open source — cada um com link para o código e para a demo publicada no GitHub Pages. Feito
@@ -45,9 +47,7 @@ com React 19, TypeScript e Vite, sem framework de CSS e com animações discreta
   `features` tem uma pasta por seção, `shared` reúne componentes genéricos e `data` concentra o
   conteúdo tipado (`projects.ts`, `skills.ts`, `profile.ts`). Para adicionar um projeto basta incluir
   um objeto em `src/data/projects.ts` — o TypeScript garante descrição nos dois idiomas.
-- **i18n próprio e tipado em vez de uma biblioteca.** São ~80 strings: um dicionário pt-BR é a fonte da
-  verdade e o inglês precisa ter exatamente o mesmo formato (`const en: Dictionary`), então faltar uma
-  chave é erro de compilação. Zero dependência extra e nenhum carregamento assíncrono de traduções.
+- **i18n próprio e tipado em vez de uma biblioteca.** Veja [Internacionalização](#internacionalização).
 - **CSS Modules + tokens.** Cores, espaçamentos, raios e sombras são variáveis CSS; o tema escuro só
   redefine os tokens em `[data-theme='dark']`. Sem runtime de CSS-in-JS e sem classes utilitárias.
 - **Animações com custo baixo.** `LazyMotion` + componentes `m` com as _features_ de animação carregadas
@@ -57,6 +57,43 @@ reducedMotion="user"` desliga transformações para quem prefere menos movimento
   repositório, com `loading="lazy"`, dimensões fixas (sem layout shift) e fallback em caso de 404.
 - **Preferências resilientes.** Leitura/escrita do `localStorage` nunca lança erro (modo privado,
   cookies bloqueados); um script inline no `index.html` aplica tema antes do React montar.
+
+## Internacionalização
+
+O site inteiro existe em **pt-BR** (padrão) e **inglês**: textos visíveis, `aria-label`s, títulos,
+mensagens de estado (filtro, cópia de e-mail), `document.title` e a meta description.
+
+**Como funciona**
+
+- `src/core/i18n/translations.ts` tem um dicionário por idioma. O pt-BR é a fonte da verdade e define
+  o tipo `Dictionary`; o inglês é declarado como `const en: Dictionary`, então qualquer chave faltando
+  ou sobrando é erro de compilação (e um teste compara as chaves dos dois idiomas).
+- Textos com variáveis são funções tipadas, ex.: `projects.count(n)` → "1 projeto" / "5 projetos".
+- Conteúdo de dados usa `Localized<string>` (`{ 'pt-BR': …, en: … }`) — por exemplo a descrição de cada
+  projeto em `src/data/projects.ts` — ou `Translatable` quando o texto pode ser neutro ("TypeScript").
+- O `I18nProvider` expõe `{ language, t, setLanguage }` via `useI18n()` e sincroniza
+  `<html lang>`, `document.title` e a meta description sempre que o idioma muda.
+- **Idioma inicial:** escolha salva (`localStorage`, chave `bc-lang`) > idioma do navegador
+  (`pt*` → pt-BR, qualquer outro → en) > pt-BR. Um script inline no `index.html` aplica o mesmo
+  `<html lang>` antes do React montar.
+- O seletor do header é um grupo de botões PT/EN com `aria-pressed`, nome do idioma por extenso para
+  leitores de tela e atributo `lang` em cada opção.
+- Datas/números: hoje o único valor formatado é o ano do rodapé; novos valores devem usar
+  `Intl.*Format(language)`.
+
+**Por que não i18next?** Com ~80 strings e dois idiomas, um dicionário tipado entrega a mesma segurança
+(chaves verificadas pelo compilador) sem dependência extra, sem carregamento assíncrono e sem custo no
+bundle — o que ajuda a manter o Lighthouse perto de 100. Se o site crescer (namespaces, pluralização
+complexa, muitos idiomas), migrar para i18next é direto: os dicionários já são objetos aninhados.
+
+**Como adicionar um idioma (ex.: espanhol)**
+
+1. Inclua o código em `LANGUAGES` e um rótulo em `LANGUAGE_LABELS` (`src/core/i18n/language.ts`) e ajuste
+   `detectBrowserLanguage` (ex.: `es*` → `es`).
+2. Crie `const es: Dictionary = { … }` em `translations.ts` e registre em `translations` — o compilador
+   aponta tudo o que falta.
+3. Adicione a chave `es` aos campos `Localized` em `src/data/` (o TypeScript também aponta).
+4. Atualize o script inline do `index.html` e rode `npm test`.
 
 ## Como rodar
 
