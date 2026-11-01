@@ -8,6 +8,8 @@ projects — each one linking to its source code and its live demo on GitHub Pag
 
 **Live demo:** https://brunoicosta.github.io/
 
+![Portfolio home page with hero, language switcher and theme toggle](./docs/screenshot.png)
+
 ## Highlights
 
 - Sections: hero, about, skills, projects (filter: All / Angular / React) and contact.

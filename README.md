@@ -9,6 +9,8 @@ com React 19, TypeScript e Vite, sem framework de CSS e com animações discreta
 
 **Demo ao vivo:** https://brunoicosta.github.io/
 
+![Página inicial do portfólio com hero, seletor de idioma e tema](./docs/screenshot.png)
+
 ## Funcionalidades
 
 - **Hero, Sobre, Habilidades, Projetos e Contato** em uma página com navegação por âncoras e header fixo.
