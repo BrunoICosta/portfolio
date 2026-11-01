@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { renderWithProviders } from '../../test/render'
+import { LINKEDIN_URL } from '../../data/profile'
 import { Contact } from './Contact'
 
 describe('Contact', () => {
@@ -18,9 +19,11 @@ describe('Contact', () => {
     expect(github).toHaveAttribute('rel', 'noopener noreferrer')
   })
 
-  it('hides the LinkedIn link while LINKEDIN_URL is empty', () => {
+  it('links to the LinkedIn profile', () => {
     renderWithProviders(<Contact />)
-    expect(screen.queryByRole('link', { name: /LinkedIn/ })).not.toBeInTheDocument()
+    const linkedin = screen.getByRole('link', { name: /LinkedIn/ })
+    expect(linkedin).toHaveAttribute('href', LINKEDIN_URL)
+    expect(linkedin).toHaveAttribute('target', '_blank')
   })
 
   it('copies the email and confirms it', async () => {

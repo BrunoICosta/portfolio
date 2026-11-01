@@ -8,8 +8,7 @@ export const PROFILE = {
 } as const
 
 /**
- * LinkedIn profile URL.
- * TODO(bruno): fill in with the full profile URL (e.g. https://www.linkedin.com/in/<user>/).
- * While it is empty, the LinkedIn link is hidden everywhere on the site.
+ * LinkedIn profile URL (percent-encoded). When empty, the LinkedIn link is hidden everywhere on the site.
  */
-export const LINKEDIN_URL: string = ''
+export const LINKEDIN_URL: string =
+  'https://www.linkedin.com/in/bruno-vin%C3%ADcius-isaac-costa-a90758156/'

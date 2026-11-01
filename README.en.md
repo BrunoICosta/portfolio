@@ -48,6 +48,6 @@ npm run build   # type-check + production build
 
 ## Author
 
-**Bruno Vinicius Isaac Costa** — https://github.com/BrunoICosta · brunoisaacosta@hotmail.com
+**Bruno Vinicius Isaac Costa** — https://github.com/BrunoICosta · [LinkedIn](https://www.linkedin.com/in/bruno-vin%C3%ADcius-isaac-costa-a90758156/) · brunoisaacosta@hotmail.com
 
 License: [MIT](./LICENSE)
