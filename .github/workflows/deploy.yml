@@ -1,21 +1,67 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloudflare
 
+# One deployment serves https://portfolio.brunoisaac.dev/:
+#   /          -> this portfolio
+#   /<repo>/   -> every app listed in apps.json, built from its own (public) repository
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  # An app repository can trigger a redeploy after it changes (see README "Deploy").
+  repository_dispatch:
+    types: [app-updated]
+  # Daily rebuild so the live apps never drift from their main branches.
+  schedule:
+    - cron: '17 6 * * *'
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
-  build:
+  setup:
+    name: Read apps.json
+    runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.apps.outputs.apps }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: apps
+        run: echo "apps=$(jq -c . apps.json)" >> "$GITHUB_OUTPUT"
+
+  apps:
+    name: Build ${{ matrix.app.repo }}
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      # Let every app finish so one failure doesn't hide others; deploy still waits for all.
+      fail-fast: false
+      matrix:
+        app: ${{ fromJSON(needs.setup.outputs.apps) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: BrunoICosta/${{ matrix.app.repo }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: ${{ matrix.app.build }}
+
+      - name: Check build output
+        run: test -f "${{ matrix.app.out }}/index.html"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-${{ matrix.app.repo }}
+          path: ${{ matrix.app.out }}
+          if-no-files-found: error
+          retention-days: 3
+
+  site:
+    name: Build portfolio
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,24 +73,42 @@ jobs:
 
       - run: npm ci
       - run: npm test
-
-      # User site (BrunoICosta.github.io) is served from the root, so Vite keeps base '/'.
       - run: npm run build
 
-      # Unknown paths fall back to the app instead of GitHub's default 404 page.
-      - run: cp dist/index.html dist/404.html
-
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
+          name: portfolio
           path: dist
+          if-no-files-found: error
+          retention-days: 3
 
   deploy:
-    needs: build
+    name: Deploy to Cloudflare Workers
+    # Runs only when the portfolio and every app built successfully.
+    needs: [apps, site]
     runs-on: ubuntu-latest
+    concurrency:
+      group: cloudflare-deploy
+      cancel-in-progress: false
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: production
+      url: https://portfolio.brunoisaac.dev/
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Assemble site/
+        run: node scripts/assemble.mjs --artifacts artifacts
+
+      - name: Deploy
+        run: npx --yes wrangler@4 deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
