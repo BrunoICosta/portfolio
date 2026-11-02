@@ -15,7 +15,7 @@ export function isLanguage(value: unknown): value is Language {
 
 /** Short label and native name, shown in the language switcher. */
 export const LANGUAGE_LABELS: Record<Language, { short: string; name: string }> = {
-  'pt-BR': { short: 'PT', name: 'Português' },
+  'pt-BR': { short: 'PT', name: 'Português (Brasil)' },
   en: { short: 'EN', name: 'English' },
 }
 

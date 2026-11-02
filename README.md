@@ -14,8 +14,8 @@ com React 19, TypeScript e Vite, sem framework de CSS e com animações discreta
 ## Funcionalidades
 
 - **Hero, Sobre, Habilidades, Projetos e Contato** em uma página com navegação por âncoras e header fixo.
-- **Bilíngue (pt-BR / EN)**: idioma inicial pela escolha salva > idioma do navegador > pt-BR, seletor PT/EN
-  no header e badge "PT-BR / EN" nos cards (todos os projetos também são bilíngues).
+- **Bilíngue (pt-BR / EN)**: idioma inicial pela escolha salva > idioma do navegador > pt-BR, seletor com
+  bandeiras (Brasil / EUA) no header e badge "PT-BR / EN" com bandeirinhas nos cards (todos os projetos também são bilíngues).
 - **Tema claro/escuro**: segue o sistema operacional na primeira visita e lembra a escolha; aplicado
   antes da primeira pintura (sem "flash" de tema errado).
 - **Projetos filtráveis** (Todos / Angular / React) com contagem anunciada para leitores de tela.
@@ -78,8 +78,11 @@ mensagens de estado (filtro, cópia de e-mail), `document.title` e a meta descri
 - **Idioma inicial:** escolha salva (`localStorage`, chave `bc-lang`) > idioma do navegador
   (`pt*` → pt-BR, qualquer outro → en) > pt-BR. Um script inline no `index.html` aplica o mesmo
   `<html lang>` antes do React montar.
-- O seletor do header é um grupo de botões PT/EN com `aria-pressed`, nome do idioma por extenso para
-  leitores de tela e atributo `lang` em cada opção.
+- O seletor do header é um grupo ("Idioma"/"Language") de dois botões com bandeiras em SVG inline
+  (`src/shared/components/Flag.tsx`; emoji de bandeira não renderiza no Windows). Cada botão tem
+  `aria-pressed`, nome acessível e `title` no próprio idioma ("Português (Brasil)", "English") e
+  atributo `lang`; a bandeira é decorativa (`aria-hidden`). O idioma ativo ganha anel de destaque e cor
+  plena (não depende só de cor); os inativos ficam esmaecidos até receber hover/foco.
 - Datas/números: hoje o único valor formatado é o ano do rodapé; novos valores devem usar
   `Intl.*Format(language)`.
 

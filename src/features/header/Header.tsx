@@ -3,6 +3,7 @@ import { LANGUAGE_LABELS, LANGUAGES } from '../../core/i18n/language'
 import { useI18n } from '../../core/i18n/useI18n'
 import { SECTION_IDS } from '../../core/sections'
 import { useTheme } from '../../core/theme/useTheme'
+import { Flag } from '../../shared/components/Flag'
 import { Icon } from '../../shared/components/Icon'
 import styles from './Header.module.css'
 
@@ -68,7 +69,7 @@ export function Header() {
                 title={LANGUAGE_LABELS[option].name}
                 onClick={() => setLanguage(option)}
               >
-                <span aria-hidden="true">{LANGUAGE_LABELS[option].short}</span>
+                <Flag language={option} width={24} className={styles.flag} />
                 <span className="visually-hidden">{LANGUAGE_LABELS[option].name}</span>
               </button>
             ))}

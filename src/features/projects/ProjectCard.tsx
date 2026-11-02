@@ -2,6 +2,7 @@ import { LANGUAGE_LABELS } from '../../core/i18n/language'
 import { useI18n } from '../../core/i18n/useI18n'
 import { getDemoUrl, getRepoUrl, type Project } from '../../data/projects'
 import { ExternalLink } from '../../shared/components/ExternalLink'
+import { Flag } from '../../shared/components/Flag'
 import { Icon } from '../../shared/components/Icon'
 import styles from './ProjectCard.module.css'
 import { ProjectScreenshot } from './ProjectScreenshot'
@@ -21,7 +22,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className={styles.meta}>
           <p className={styles.category}>{t.projects.filters[project.category]}</p>
           <p className={styles.languages}>
-            <Icon name="globe" size={12} />
+            <span className={styles.flags} aria-hidden="true">
+              {project.uiLanguages.map((code) => (
+                <Flag key={code} language={code} width={14} />
+              ))}
+            </span>
             <span aria-hidden="true">{project.uiLanguages.join(' / ').toUpperCase()}</span>
             <span className="visually-hidden">
               {t.projects.uiLanguages(

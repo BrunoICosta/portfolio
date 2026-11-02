@@ -67,6 +67,16 @@
   letter-spacing: 0.02em;
 }
 
+.flags {
+  display: inline-flex;
+  gap: 0.1875rem;
+}
+
+.flags svg {
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.12);
+}
+
 .category {
   padding: 0.125rem var(--space-2);
   border-radius: var(--radius-sm);

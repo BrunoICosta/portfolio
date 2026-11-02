@@ -21,7 +21,9 @@ describe('ProjectCard', () => {
     expect(screen.getByRole('heading', { name: 'Kanban Board' })).toBeInTheDocument()
     expect(screen.getByText(project.description['pt-BR'])).toBeInTheDocument()
     expect(screen.getByRole('list', { name: 'Tecnologias' })).toHaveTextContent('NgRx')
-    expect(screen.getByText('Interface disponível em: Português, English')).toBeInTheDocument()
+    expect(
+      screen.getByText('Interface disponível em: Português (Brasil), English'),
+    ).toBeInTheDocument()
 
     const code = screen.getByRole('link', { name: /^Código — Kanban Board/ })
     expect(code).toHaveAttribute('href', 'https://github.com/BrunoICosta/angular-kanban-board')
@@ -34,7 +36,9 @@ describe('ProjectCard', () => {
 
     expect(screen.getByText(project.description.en)).toBeInTheDocument()
     expect(screen.getByRole('list', { name: 'Technologies' })).toBeInTheDocument()
-    expect(screen.getByText('Interface available in: Português, English')).toBeInTheDocument()
+    expect(
+      screen.getByText('Interface available in: Português (Brasil), English'),
+    ).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /^Code — Kanban Board/ })).toBeInTheDocument()
     expect(screen.getAllByRole('link', { name: /\(opens in a new tab\)$/ })).toHaveLength(2)
   })

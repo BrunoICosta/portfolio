@@ -114,36 +114,55 @@
 
 .languages {
   display: inline-flex;
-  padding: 0.1875rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-bg-elevated);
+  gap: 0.125rem;
 }
 
 .language {
-  min-width: 2.25rem;
-  height: 2.125rem;
-  padding: 0 var(--space-2);
-  border: 0;
-  border-radius: calc(var(--radius-md) - 0.1875rem);
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
   background: transparent;
-  color: var(--color-text-muted);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.04em;
   transition:
     background-color var(--duration-fast) ease,
-    color var(--duration-fast) ease;
+    border-color var(--duration-fast) ease;
+}
+
+.flag {
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.12);
+  filter: grayscale(0.7);
+  opacity: 0.55;
+  transition:
+    filter var(--duration-fast) ease,
+    opacity var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.language:hover .flag,
+.language:focus-visible .flag {
+  filter: none;
+  opacity: 1;
 }
 
 .language:hover {
-  color: var(--color-text);
+  background: var(--color-surface);
 }
 
+/* Active language: full colour plus a ring, so the state never relies on colour alone. */
 .language[aria-pressed='true'] {
-  background: var(--color-text);
-  color: var(--color-bg);
+  border-color: var(--color-border-strong);
+  background: var(--color-bg-elevated);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+}
+
+.language[aria-pressed='true'] .flag {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.06);
 }
 
 @media (min-width: 40rem) {

@@ -14,8 +14,8 @@ projects — each one linking to its source code and its live demo on GitHub Pag
 
 - Sections: hero, about, skills, projects (filter: All / Angular / React) and contact.
 - **Bilingual (pt-BR / EN)**: initial language = saved choice > browser language (`pt*` → pt-BR,
-  otherwise en) > pt-BR; PT/EN switcher in the header; `<html lang>`, page title and meta description
-  follow the active language. Project cards show a "PT-BR / EN" badge.
+  otherwise en) > pt-BR; flag switcher (Brazil / USA, inline SVG) in the header; `<html lang>`, page title and meta description
+  follow the active language. Project cards show a "PT-BR / EN" badge with small flags.
 - Light/dark theme (OS preference on first visit, then remembered), applied before first paint.
 - Project cards with tech badges, "Code"/"Demo" links and a screenshot loaded from each repo's
   `docs/screenshot.png`, with a skeleton while loading and a branded fallback when it is missing.
