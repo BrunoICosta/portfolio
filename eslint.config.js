@@ -7,7 +7,7 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default defineConfig([
-  globalIgnores(['dist', 'coverage']),
+  globalIgnores(['dist', 'coverage', 'site', '.wrangler']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -24,6 +24,11 @@ export default defineConfig([
     rules: {
       '@typescript-eslint/consistent-type-imports': 'error',
     },
+  },
+  {
+    files: ['scripts/**/*.mjs'],
+    extends: [js.configs.recommended, prettier],
+    languageOptions: { ecmaVersion: 2024, sourceType: 'module', globals: globals.node },
   },
   {
     files: ['src/test/**/*.{ts,tsx}', '**/*.test.{ts,tsx}'],

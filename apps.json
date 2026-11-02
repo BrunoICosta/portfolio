@@ -1,0 +1,38 @@
+[
+  {
+    "repo": "angular-tv-explorer",
+    "build": "npm run build:cf",
+    "out": "dist/angular-tv-explorer/browser"
+  },
+  {
+    "repo": "angular-finance-tracker",
+    "build": "npm run build:cf",
+    "out": "dist/angular-finance-tracker/browser"
+  },
+  {
+    "repo": "angular-appointment-scheduler",
+    "build": "npm run build:cf",
+    "out": "dist/angular-appointment-scheduler/browser"
+  },
+  {
+    "repo": "angular-kanban-board",
+    "build": "npm run build:cf",
+    "out": "dist/angular-kanban-board/browser"
+  },
+  {
+    "repo": "angular-ecommerce-admin",
+    "build": "npm run build:cf",
+    "out": "dist/angular-ecommerce-admin/browser"
+  },
+  { "repo": "react-recipe-finder", "build": "npm run build:cf", "out": "dist" },
+  { "repo": "react-weather-dashboard", "build": "npm run build:cf", "out": "dist" },
+  { "repo": "react-habit-tracker", "build": "npm run build:cf", "out": "dist" },
+  { "repo": "react-notes-workspace", "build": "npm run build:cf", "out": "dist" },
+  { "repo": "react-realtime-chat", "build": "npm run build:cf", "out": "apps/web/dist" },
+  {
+    "repo": "next-ecommerce-store",
+    "build": "npm run build:cf",
+    "out": "out",
+    "fallback": "404"
+  }
+]

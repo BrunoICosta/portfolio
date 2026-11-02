@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // User site (BrunoICosta.github.io) is served from the domain root.
+  // The portfolio is served from the domain root (apps live under /<repo>/).
   base: '/',
   plugins: [react()],
   test: {

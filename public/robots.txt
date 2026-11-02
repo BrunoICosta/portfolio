@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://brunoicosta.github.io/sitemap.xml
+Sitemap: https://portfolio.brunoisaac.dev/sitemap.xml

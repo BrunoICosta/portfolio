@@ -1,5 +1,5 @@
 {
-  "name": "brunoicosta-github-io",
+  "name": "portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -12,7 +12,9 @@
     "test:watch": "vitest",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "assemble": "node scripts/assemble.mjs",
+    "cf:dev": "npx wrangler@4 dev"
   },
   "dependencies": {
     "motion": "^14.1.0",

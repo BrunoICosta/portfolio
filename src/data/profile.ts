@@ -4,7 +4,7 @@ export const PROFILE = {
   email: 'brunoisaacosta@hotmail.com',
   githubUser: 'BrunoICosta',
   githubUrl: 'https://github.com/BrunoICosta',
-  siteUrl: 'https://brunoicosta.github.io/',
+  siteUrl: 'https://portfolio.brunoisaac.dev/',
 } as const
 
 /**

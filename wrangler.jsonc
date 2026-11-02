@@ -1,0 +1,31 @@
+{
+  // One Worker serves the portfolio (/) and every app (/<repo>/) from static assets.
+  // Assets are matched first; only misses reach worker/index.ts (SPA/404 fallback per app).
+  "name": "portfolio",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-13",
+  "assets": {
+    // Produced by `npm run assemble` (portfolio dist + each app's build output).
+    "directory": "./site",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    // App roots without the trailing slash go to the Worker so it can answer with a 301
+    // (the asset layer alone would send a 307). Keep in sync with apps.json (a test checks it).
+    "run_worker_first": [
+      "/angular-tv-explorer",
+      "/angular-finance-tracker",
+      "/angular-appointment-scheduler",
+      "/angular-kanban-board",
+      "/angular-ecommerce-admin",
+      "/react-recipe-finder",
+      "/react-weather-dashboard",
+      "/react-habit-tracker",
+      "/react-notes-workspace",
+      "/react-realtime-chat",
+      "/next-ecommerce-store",
+    ],
+  },
+  "routes": [{ "pattern": "portfolio.brunoisaac.dev", "custom_domain": true }],
+  "observability": { "enabled": true },
+}

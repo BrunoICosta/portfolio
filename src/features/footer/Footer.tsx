@@ -4,7 +4,7 @@ import { ExternalLink } from '../../shared/components/ExternalLink'
 import { Icon } from '../../shared/components/Icon'
 import styles from './Footer.module.css'
 
-const SITE_REPO_URL = `${PROFILE.githubUrl}/${PROFILE.githubUser}.github.io`
+const SITE_REPO_URL = `${PROFILE.githubUrl}/portfolio`
 
 export function Footer() {
   const { t } = useI18n()

@@ -1,3 +1,5 @@
 dist
 coverage
+site
+.wrangler
 package-lock.json

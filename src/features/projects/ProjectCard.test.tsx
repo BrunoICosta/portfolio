@@ -28,7 +28,7 @@ describe('ProjectCard', () => {
     const code = screen.getByRole('link', { name: /^Código — Kanban Board/ })
     expect(code).toHaveAttribute('href', 'https://github.com/BrunoICosta/angular-kanban-board')
     const demo = screen.getByRole('link', { name: /^Demo — Kanban Board \(abre em nova aba\)/ })
-    expect(demo).toHaveAttribute('href', 'https://brunoicosta.github.io/angular-kanban-board/')
+    expect(demo).toHaveAttribute('href', 'https://portfolio.brunoisaac.dev/angular-kanban-board/')
   })
 
   it('renders in English', () => {
