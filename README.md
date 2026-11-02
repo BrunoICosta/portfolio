@@ -4,10 +4,11 @@
 
 Site pessoal de **Bruno Vinicius Isaac Costa**, desenvolvedor front-end (Angular & React). Uma página
 única, rápida e acessível que apresenta quem sou, minhas habilidades e uma vitrine filtrável dos meus
-projetos open source — cada um com link para o código e para a demo publicada no GitHub Pages. Feito
-com React 19, TypeScript e Vite, sem framework de CSS e com animações discretas.
+projetos open source — cada um com link para o código e para a demo ao vivo. Feito com React 19,
+TypeScript e Vite, sem framework de CSS e com animações discretas. Este repositório também é o
+**agregador de deploy**: publica o portfólio e os 11 apps em um único Worker da Cloudflare.
 
-**Demo ao vivo:** https://brunoicosta.github.io/
+**Demo ao vivo:** https://portfolio.brunoisaac.dev/
 
 ![Página inicial do portfólio com hero, seletor de idioma e tema](./docs/screenshot.png)
 
@@ -39,7 +40,8 @@ com React 19, TypeScript e Vite, sem framework de CSS e com animações discreta
 | Animações        | Motion 14 (`motion/react`, ex-Framer Motion) com `LazyMotion`             |
 | Testes           | Vitest 5, Testing Library (React 16, user-event 14, jest-dom 7), jsdom 30 |
 | Qualidade        | ESLint 10 + typescript-eslint 8 (strict), Prettier 3                      |
-| CI/CD            | GitHub Actions + GitHub Pages                                             |
+| CI/CD            | GitHub Actions                                                            |
+| Hospedagem       | Cloudflare Workers (static assets) + Worker de fallback, Wrangler 4       |
 
 ## Arquitetura e decisões
 
@@ -100,6 +102,79 @@ complexa, muitos idiomas), migrar para i18next é direto: os dicionários já s�
 3. Adicione a chave `es` aos campos `Localized` em `src/data/` (o TypeScript também aponta).
 4. Atualize o script inline do `index.html` e rode `npm test`.
 
+## Deploy
+
+Publicado na **Cloudflare (Workers static assets)** em https://portfolio.brunoisaac.dev/, em um
+**único deploy** que contém o portfólio e todos os apps:
+
+```
+https://portfolio.brunoisaac.dev/          -> este portfólio (dist/)
+https://portfolio.brunoisaac.dev/<repo>/   -> cada app de apps.json (build com base /<repo>/)
+```
+
+**Como funciona**
+
+1. `apps.json` lista os apps: `{ "repo", "build": "npm run build:cf", "out" }`. `out` é a pasta gerada
+   pelo build (`dist/<projeto>/browser` no Angular, `dist` no Vite, `out` no Next.js,
+   `apps/web/dist` no monorepo do chat).
+2. `scripts/assemble.mjs` monta `site/`: o portfólio na raiz, cada app em `site/<repo>/` e um
+   `_headers` com `X-Content-Type-Options`, `Referrer-Policy` e cache longo (`immutable`) para os
+   arquivos com hash (`/assets/*`, `/<app>/assets/*`, `/<app>/_next/static/*`).
+3. `wrangler.jsonc` publica `site/` como static assets do Worker `portfolio` no custom domain
+   `portfolio.brunoisaac.dev`. Arquivos existentes são servidos direto pela Cloudflare; só o que
+   **não** existe chega ao Worker (`worker/index.ts`).
+4. O Worker aplica as regras de `worker/routing.ts` (função pura, testada com Vitest):
+   - `/<app>` sem barra: **301** para `/<app>/`;
+   - `/<app>/arquivo.ext` inexistente: **404** em texto puro (nunca HTML no lugar de JS/CSS);
+   - `/<app>/<rota>`: `index.html` do app com **200** (SPA). O `next-ecommerce-store`, que exporta
+     HTML real por rota, responde com o próprio `404.html` e status **404** (`"fallback": "404"`);
+   - qualquer outro caminho: `404.html` do portfólio com status **404**.
+
+**Pipeline** (`.github/workflows/deploy.yml`): roda em push na `main`, manualmente
+(`workflow_dispatch`), via `repository_dispatch` (`app-updated`) e diariamente (06:17 UTC).
+
+1. `setup` lê `apps.json` e gera a matriz;
+2. `apps` (matriz, `fail-fast: false`): checkout de `BrunoICosta/<repo>` (público, sem token), Node 22,
+   `npm ci`, build e upload do `out` como artefato `app-<repo>`;
+3. `site`: testes e build do portfólio (artefato `portfolio`);
+4. `deploy` (concurrency `cloudflare-deploy`): só roda se **todos** os builds passaram; baixa os
+   artefatos, executa `node scripts/assemble.mjs --artifacts artifacts` e `npx wrangler@4 deploy`.
+
+**Secrets necessários** (Settings > Secrets and variables > Actions):
+
+- `CLOUDFLARE_ACCOUNT_ID`: ID da conta Cloudflare;
+- `CLOUDFLARE_API_TOKEN`: token de conta criado a partir do template **Edit Cloudflare Workers**,
+  limitado à conta e à zona `brunoisaac.dev`. Permissões mínimas: _Account > Workers Scripts > Edit_
+  (o primeiro deploy cria o Worker), _Zone > Workers Routes > Edit_ (custom domain) e
+  _Account > Account Settings > Read_.
+
+**Adicionar um app**
+
+1. No repositório do app, crie o script `build:cf` gerando o build estático com base `/<repo>/`.
+2. Inclua `{ "repo": "<repo>", "build": "npm run build:cf", "out": "<pasta>" }` em `apps.json` (use
+   `"fallback": "404"` só se o app exporta HTML por rota) e o caminho `"/<repo>"` em
+   `assets.run_worker_first` no `wrangler.jsonc`; um teste garante que as duas listas batem.
+3. Adicione o card em `src/data/projects.ts`.
+
+**Redeploy disparado por um app**: o workflow do app pode chamar, ao final do CI na `main`:
+
+```yaml
+- run: >-
+    gh api repos/BrunoICosta/portfolio/dispatches
+    -f event_type=app-updated -f "client_payload[repo]=${{ github.event.repository.name }}"
+  env:
+    # PAT fine-grained com acesso ao repositório "portfolio" e Contents: Read and write
+    GH_TOKEN: ${{ secrets.PORTFOLIO_DISPATCH_TOKEN }}
+```
+
+**Testar localmente** (sem login na Cloudflare):
+
+```bash
+# usa os builds em ../<repo>/<out> (ou em outra pasta com --repos <dir>)
+node scripts/assemble.mjs --only react-recipe-finder,next-ecommerce-store
+npx wrangler@4 dev   # http://localhost:8787
+```
+
 ## Como rodar
 
 Pré-requisitos: Node.js 22+ e npm 10+.
@@ -113,13 +188,19 @@ npm run lint         # ESLint
 npm run format:check # Prettier (use `npm run format` para corrigir)
 npm run build        # type-check + build de produção em dist/
 npm run preview      # serve o build de produção localmente
+npm run assemble     # monta site/ (portfólio + apps) para o deploy na Cloudflare
+npm run cf:dev       # Worker + assets localmente com wrangler dev
 ```
 
 ## Estrutura de pastas
 
 ```
+├── apps.json                # apps publicados em /<repo>/ (repo, build, out)
+├── wrangler.jsonc           # Worker "portfolio", static assets e custom domain
+├── worker/                  # Worker de fallback (index.ts) e regras puras testadas (routing.ts)
+├── scripts/assemble.mjs     # monta site/ a partir dos builds
 ├── index.html               # meta tags/SEO, JSON-LD e script de tema pré-render
-├── public/                  # favicon, og-image, robots.txt, sitemap.xml, manifest
+├── public/                  # favicon, og-image, 404.html, robots.txt, sitemap.xml, manifest
 └── src/
     ├── core/
     │   ├── i18n/            # dicionários pt-BR/en, provider, hook useI18n

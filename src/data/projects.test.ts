@@ -15,7 +15,7 @@ describe('projects data', () => {
     }
   })
 
-  it('builds GitHub, Pages and screenshot URLs from the repo name', () => {
+  it('builds GitHub, demo and screenshot URLs from the repo name', () => {
     const project = { repo: 'react-weather-dashboard' }
     expect(getRepoUrl(project)).toBe('https://github.com/BrunoICosta/react-weather-dashboard')
     expect(getDemoUrl(project)).toBe('https://portfolio.brunoisaac.dev/react-weather-dashboard/')

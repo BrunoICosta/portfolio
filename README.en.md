@@ -4,9 +4,10 @@
 
 Personal site of **Bruno Vinicius Isaac Costa**, front-end developer (Angular & React). A fast,
 accessible single page with an about section, skills and a filterable showcase of my open source
-projects — each one linking to its source code and its live demo on GitHub Pages.
+projects — each one linking to its source code and its live demo. This repository is also the
+**deployment aggregator**: it publishes the portfolio and all 11 apps in a single Cloudflare Worker.
 
-**Live demo:** https://brunoicosta.github.io/
+**Live demo:** https://portfolio.brunoisaac.dev/
 
 ![Portfolio home page with hero, language switcher and theme toggle](./docs/screenshot.png)
 
@@ -26,7 +27,7 @@ projects — each one linking to its source code and its live demo on GitHub Pag
 ## Stack
 
 React 19.3 · TypeScript 6.0 (strict) · Vite 8.3 · CSS Modules + design tokens · Motion 14 (LazyMotion) ·
-Vitest 5 + Testing Library · ESLint 10 + typescript-eslint 8 · Prettier 3 · GitHub Actions + Pages.
+Vitest 5 + Testing Library · ESLint 10 + typescript-eslint 8 · Prettier 3 · GitHub Actions · Cloudflare Workers (static assets).
 
 ## Internationalization in short
 
@@ -35,6 +36,31 @@ must match it exactly, so a missing key is a compile error. Data content uses `L
 No i18n library is needed for ~80 strings, which keeps the bundle small. To add a language, extend
 `LANGUAGES`/`LANGUAGE_LABELS`, add a dictionary and fill the `Localized` fields — the compiler lists
 everything that is missing.
+
+## Deploy
+
+Published on **Cloudflare (Workers static assets)** at https://portfolio.brunoisaac.dev/ as a single
+deployment: the portfolio at `/` and every app from `apps.json` at `/<repo>/`.
+
+- `scripts/assemble.mjs` builds `site/`: the portfolio at the root, each app's `out` in
+  `site/<repo>/`, plus a `_headers` file with security headers and immutable caching for hashed assets.
+- Existing files are served straight from the asset layer; misses reach `worker/index.ts`, whose pure,
+  unit-tested rules (`worker/routing.ts`) answer: `/<app>` gets a 301 to `/<app>/`; a missing file gets
+  a plain 404; a deep route gets the app's `index.html` (200), or the Next.js store's own `404.html`
+  (404); anything else gets the portfolio's `404.html` (404).
+- `.github/workflows/deploy.yml` runs on push to `main`, manually, on `repository_dispatch`
+  (`app-updated`) and daily: a matrix builds every app from its public repo, the portfolio is tested
+  and built, and the deploy job (only if everything built) assembles `site/` and runs
+  `npx wrangler@4 deploy`.
+- Secrets: `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` (an account token from the
+  **Edit Cloudflare Workers** template, scoped to the account and the `brunoisaac.dev` zone; minimum:
+  Account > Workers Scripts > Edit, Zone > Workers Routes > Edit, Account > Account Settings > Read).
+- Adding an app: give it a `build:cf` script with base `/<repo>/`, add it to `apps.json` and to
+  `assets.run_worker_first` in `wrangler.jsonc` (a test keeps both in sync), then add its card.
+- An app can trigger a redeploy with
+  `gh api repos/BrunoICosta/portfolio/dispatches -f event_type=app-updated` (fine-grained PAT with
+  Contents: Read and write on `portfolio`).
+- Local check: `node scripts/assemble.mjs --only <app>,<app>` then `npx wrangler@4 dev`.
 
 ## Running locally
 

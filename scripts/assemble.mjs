@@ -80,7 +80,7 @@ for (const app of selected) {
     ? join(resolve(values.artifacts), `app-${app.repo}`)
     : join(resolve(values.repos), app.repo, app.out)
   const target = join(siteDir, app.repo)
-  // SPA fallback is done by the Worker; drop GitHub Pages-era 404.html copies of index.html.
+  // SPA fallback is done by the Worker; drop leftover 404.html copies of index.html.
   if (copyBuild(from, target, app.repo, { optional: values['allow-missing'] })) {
     assembled.push(app)
     if (app.fallback !== '404') rmSync(join(target, '404.html'), { force: true })

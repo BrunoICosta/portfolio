@@ -5,7 +5,7 @@ export const PROJECT_CATEGORIES = ['angular', 'react'] as const
 export type ProjectCategory = (typeof PROJECT_CATEGORIES)[number]
 
 export interface Project {
-  /** GitHub repository name; also the GitHub Pages path of the live demo. */
+  /** GitHub repository name; also the path of the live demo (/<repo>/). */
   repo: string
   title: string
   category: ProjectCategory

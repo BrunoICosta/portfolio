@@ -60,7 +60,7 @@ const ptBR = {
   projects: {
     title: 'Projetos',
     intro:
-      'Uma seleção de projetos open source. Cada um tem código no GitHub e demo publicada no GitHub Pages.',
+      'Uma seleção de projetos open source. Cada um tem código no GitHub e demo ao vivo em portfolio.brunoisaac.dev.',
     filterLabel: 'Filtrar projetos por tecnologia',
     filters: { all: 'Todos', angular: 'Angular', react: 'React' },
     count: (count: number) => (count === 1 ? '1 projeto' : `${count} projetos`),
@@ -154,7 +154,7 @@ const en: Dictionary = {
   projects: {
     title: 'Projects',
     intro:
-      'A selection of open source projects. Each one has its code on GitHub and a live demo on GitHub Pages.',
+      'A selection of open source projects. Each one has its code on GitHub and a live demo on portfolio.brunoisaac.dev.',
     filterLabel: 'Filter projects by technology',
     filters: { all: 'All', angular: 'Angular', react: 'React' },
     count: (count: number) => (count === 1 ? '1 project' : `${count} projects`),

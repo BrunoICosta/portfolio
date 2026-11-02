@@ -96,7 +96,7 @@ export const SKILL_GROUPS: readonly SkillGroup[] = [
       },
       {
         name: 'CI/CD',
-        detail: 'GitHub Actions, GitHub Pages',
+        detail: 'GitHub Actions, Cloudflare Workers',
       },
       {
         name: { 'pt-BR': 'Acessibilidade', en: 'Accessibility' },
