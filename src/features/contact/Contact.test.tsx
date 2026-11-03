@@ -30,6 +30,22 @@ describe('Contact', () => {
     )
   })
 
+  it('offers the CV in the active language', () => {
+    renderWithProviders(<Contact />)
+    const pt = screen.getByRole('link', { name: /Currículo \(PDF\)/ })
+    expect(pt).toHaveAttribute('href', '/cv/Bruno-Costa-Curriculo.pdf')
+    expect(pt).toHaveAttribute('download', 'Bruno-Costa-Curriculo.pdf')
+  })
+
+  it('offers the English resume in English', () => {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, 'en')
+    renderWithProviders(<Contact />)
+    expect(screen.getByRole('link', { name: /Resume \(PDF\)/ })).toHaveAttribute(
+      'download',
+      'Bruno-Costa-Resume.pdf',
+    )
+  })
+
   it('links to the LinkedIn profile', () => {
     renderWithProviders(<Contact />)
     const linkedin = screen.getByRole('link', { name: /LinkedIn/ })

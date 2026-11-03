@@ -32,6 +32,7 @@ const ptBR = {
       'Construo interfaces rápidas e acessíveis, de painéis complexos em Angular a aplicações React focadas na experiência do usuário.',
     ctaProjects: 'Ver projetos',
     ctaContact: 'Fale comigo',
+    ctaResume: 'Baixar currículo',
     availability: 'Aberto a novas oportunidades',
   },
   about: {
@@ -82,6 +83,7 @@ const ptBR = {
     copyFailed: 'Não foi possível copiar. Use o link acima.',
     github: 'GitHub',
     linkedin: 'LinkedIn',
+    resume: 'Currículo (PDF)',
   },
   footer: {
     rights: (year: number) => `© ${year} Bruno Vinicius Isaac Costa`,
@@ -126,6 +128,7 @@ const en: Dictionary = {
       'I build fast, accessible interfaces, from complex Angular dashboards to React apps focused on user experience.',
     ctaProjects: 'See projects',
     ctaContact: 'Get in touch',
+    ctaResume: 'Download resume',
     availability: 'Open to new opportunities',
   },
   about: {
@@ -176,6 +179,7 @@ const en: Dictionary = {
     copyFailed: "Couldn't copy. Please use the link above.",
     github: 'GitHub',
     linkedin: 'LinkedIn',
+    resume: 'Resume (PDF)',
   },
   footer: {
     rights: (year: number) => `© ${year} Bruno Vinicius Isaac Costa`,

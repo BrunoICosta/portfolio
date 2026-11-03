@@ -33,6 +33,7 @@ const icons = {
   external: {
     node: <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />,
   },
+  download: { node: <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /> },
   code: { node: <path d="m16 18 6-6-6-6M8 6l-6 6 6 6" /> },
   arrowRight: { node: <path d="M5 12h14M12 5l7 7-7 7" /> },
   arrowUp: { node: <path d="m5 12 7-7 7 7M12 19V5" /> },

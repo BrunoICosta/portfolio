@@ -1,5 +1,5 @@
 import { useI18n } from '../../core/i18n/useI18n'
-import { CONTACT_EMAIL, LINKEDIN_URL, PROFILE } from '../../data/profile'
+import { CONTACT_EMAIL, LINKEDIN_URL, PROFILE, RESUME } from '../../data/profile'
 import { ExternalLink } from '../../shared/components/ExternalLink'
 import { Icon } from '../../shared/components/Icon'
 import { Section, SectionHeading } from '../../shared/components/Section'
@@ -10,6 +10,7 @@ import styles from './Contact.module.css'
 export function Contact() {
   const { t, language } = useI18n()
   const email = CONTACT_EMAIL[language]
+  const resume = RESUME[language]
   const { status, copy } = useCopyToClipboard()
 
   return (
@@ -59,6 +60,17 @@ export function Contact() {
               </ExternalLink>
             </li>
           )}
+          <li>
+            <a
+              href={resume.href}
+              download={resume.fileName}
+              type="application/pdf"
+              className={styles.social}
+            >
+              <Icon name="download" size={18} />
+              {t.contact.resume}
+            </a>
+          </li>
         </ul>
       </Reveal>
     </Section>

@@ -8,6 +8,12 @@ export const CONTACT_EMAIL: Localized = {
   en: 'hello@brunoisaac.dev',
 }
 
+/** Downloadable CV per language (files in public/cv). */
+export const RESUME: Localized<{ href: string; fileName: string }> = {
+  'pt-BR': { href: '/cv/Bruno-Costa-Curriculo.pdf', fileName: 'Bruno-Costa-Curriculo.pdf' },
+  en: { href: '/cv/Bruno-Costa-Resume.pdf', fileName: 'Bruno-Costa-Resume.pdf' },
+}
+
 export const PROFILE = {
   name: 'Bruno Vinicius Isaac Costa',
   shortName: 'Bruno Costa',

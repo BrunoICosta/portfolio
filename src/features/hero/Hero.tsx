@@ -1,12 +1,13 @@
 import { m } from 'motion/react'
 import { useI18n } from '../../core/i18n/useI18n'
-import { PROFILE } from '../../data/profile'
+import { PROFILE, RESUME } from '../../data/profile'
 import { ButtonLink } from '../../shared/components/ButtonLink'
 import { Icon } from '../../shared/components/Icon'
 import styles from './Hero.module.css'
 
 export function Hero() {
-  const { t } = useI18n()
+  const { t, language } = useI18n()
+  const resume = RESUME[language]
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
@@ -42,6 +43,16 @@ export function Hero() {
             </ButtonLink>
             <ButtonLink href="#contact" variant="secondary">
               {t.hero.ctaContact}
+            </ButtonLink>
+            <ButtonLink
+              href={resume.href}
+              download={resume.fileName}
+              type="application/pdf"
+              variant="ghost"
+            >
+              <Icon name="download" size={16} />
+              {t.hero.ctaResume}
+              <span className="visually-hidden"> (PDF)</span>
             </ButtonLink>
           </m.div>
         </div>
