@@ -13,6 +13,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const { t, language } = useI18n()
+  const title = project.title[language]
   const titleId = `project-${project.repo}`
 
   return (
@@ -36,7 +37,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </p>
         </div>
         <h3 id={titleId} className={styles.title}>
-          {project.title}
+          {title}
         </h3>
         <p className={styles.description}>{project.description[language]}</p>
 
@@ -53,12 +54,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <ExternalLink href={getRepoUrl(project)} className={styles.link}>
           <Icon name="github" size={16} />
           {t.projects.code}
-          <span className="visually-hidden">: {project.title}</span>
+          <span className="visually-hidden">: {title}</span>
         </ExternalLink>
         <ExternalLink href={getDemoUrl(project)} className={styles.link} data-primary="true">
           <Icon name="external" size={16} />
           {t.projects.demo}
-          <span className="visually-hidden">: {project.title}</span>
+          <span className="visually-hidden">: {title}</span>
         </ExternalLink>
       </div>
     </article>

@@ -27,14 +27,14 @@ describe('ProjectsSection', () => {
     await user.click(screen.getByRole('button', { name: /Angular/ }))
 
     expect(cardTitles()).toHaveLength(5)
-    expect(cardTitles()).toContain('Kanban Board')
-    expect(cardTitles()).not.toContain('Recipe Finder')
+    expect(cardTitles()).toContain('Quadro Kanban')
+    expect(cardTitles()).not.toContain('Receitário')
     expect(screen.getByRole('button', { name: /Angular/ })).toHaveAttribute('aria-pressed', 'true')
     expect(screen.getByRole('status')).toHaveTextContent('5 projetos')
 
     await user.click(screen.getByRole('button', { name: /React/ }))
 
     expect(cardTitles()).toHaveLength(6)
-    expect(cardTitles()).toContain('Next E-commerce Store')
+    expect(cardTitles()).toContain('Loja Virtual com Next.js')
   })
 })

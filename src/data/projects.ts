@@ -7,7 +7,7 @@ export type ProjectCategory = (typeof PROJECT_CATEGORIES)[number]
 export interface Project {
   /** GitHub repository name; also the path of the live demo (/<repo>/). */
   repo: string
-  title: string
+  title: Localized
   category: ProjectCategory
   description: Localized
   tech: readonly string[]
@@ -20,7 +20,7 @@ const BILINGUAL: readonly Language[] = ['pt-BR', 'en']
 export const PROJECTS: readonly Project[] = [
   {
     repo: 'angular-tv-explorer',
-    title: 'TV Explorer',
+    title: { 'pt-BR': 'Explorador de Séries', en: 'TV Explorer' },
     category: 'angular',
     description: {
       'pt-BR':
@@ -32,7 +32,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'angular-finance-tracker',
-    title: 'Finance Tracker',
+    title: { 'pt-BR': 'Controle Financeiro', en: 'Finance Tracker' },
     category: 'angular',
     description: {
       'pt-BR':
@@ -44,7 +44,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'angular-appointment-scheduler',
-    title: 'Appointment Scheduler',
+    title: { 'pt-BR': 'Agenda de Atendimentos', en: 'Appointment Scheduler' },
     category: 'angular',
     description: {
       'pt-BR':
@@ -56,7 +56,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'angular-kanban-board',
-    title: 'Kanban Board',
+    title: { 'pt-BR': 'Quadro Kanban', en: 'Kanban Board' },
     category: 'angular',
     description: {
       'pt-BR':
@@ -68,7 +68,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'angular-ecommerce-admin',
-    title: 'E-commerce Admin',
+    title: { 'pt-BR': 'Painel Admin de E-commerce', en: 'E-commerce Admin' },
     category: 'angular',
     description: {
       'pt-BR':
@@ -80,7 +80,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'react-recipe-finder',
-    title: 'Recipe Finder',
+    title: { 'pt-BR': 'Receitário', en: 'Recipe Finder' },
     category: 'react',
     description: {
       'pt-BR':
@@ -92,7 +92,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'react-weather-dashboard',
-    title: 'Weather Dashboard',
+    title: { 'pt-BR': 'Painel do Clima', en: 'Weather Dashboard' },
     category: 'react',
     description: {
       'pt-BR':
@@ -104,7 +104,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'react-habit-tracker',
-    title: 'Habit Tracker',
+    title: { 'pt-BR': 'Rastreador de Hábitos', en: 'Habit Tracker' },
     category: 'react',
     description: {
       'pt-BR':
@@ -116,7 +116,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'react-notes-workspace',
-    title: 'Notes Workspace',
+    title: { 'pt-BR': 'Espaço de Notas', en: 'Notes Workspace' },
     category: 'react',
     description: {
       'pt-BR':
@@ -128,7 +128,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'react-realtime-chat',
-    title: 'Realtime Chat',
+    title: { 'pt-BR': 'Chat em Tempo Real', en: 'Realtime Chat' },
     category: 'react',
     description: {
       'pt-BR':
@@ -140,7 +140,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     repo: 'next-ecommerce-store',
-    title: 'Next E-commerce Store',
+    title: { 'pt-BR': 'Loja Virtual com Next.js', en: 'Next.js E-commerce Store' },
     category: 'react',
     description: {
       'pt-BR':

@@ -11,7 +11,9 @@ describe('ProjectScreenshot', () => {
   it('lazy-loads the screenshot from the project repository', () => {
     renderWithProviders(<ProjectScreenshot project={project} />)
 
-    const image = screen.getByRole('img', { name: `Captura de tela do projeto ${project.title}` })
+    const image = screen.getByRole('img', {
+      name: `Captura de tela do projeto ${project.title['pt-BR']}`,
+    })
     expect(image).toHaveAttribute(
       'src',
       `https://raw.githubusercontent.com/BrunoICosta/${project.repo}/main/docs/screenshot.png`,

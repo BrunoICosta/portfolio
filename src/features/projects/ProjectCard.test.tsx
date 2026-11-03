@@ -18,16 +18,16 @@ describe('ProjectCard', () => {
   it('renders in pt-BR', () => {
     const project = renderIn('pt-BR')
 
-    expect(screen.getByRole('heading', { name: 'Kanban Board' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Quadro Kanban' })).toBeInTheDocument()
     expect(screen.getByText(project.description['pt-BR'])).toBeInTheDocument()
     expect(screen.getByRole('list', { name: 'Tecnologias' })).toHaveTextContent('NgRx')
     expect(
       screen.getByText('Interface disponível em: Português (Brasil), English'),
     ).toBeInTheDocument()
 
-    const code = screen.getByRole('link', { name: /^Código: Kanban Board/ })
+    const code = screen.getByRole('link', { name: /^Código: Quadro Kanban/ })
     expect(code).toHaveAttribute('href', 'https://github.com/BrunoICosta/angular-kanban-board')
-    const demo = screen.getByRole('link', { name: /^Demo: Kanban Board \(abre em nova aba\)/ })
+    const demo = screen.getByRole('link', { name: /^Demo: Quadro Kanban \(abre em nova aba\)/ })
     expect(demo).toHaveAttribute('href', 'https://portfolio.brunoisaac.dev/angular-kanban-board/')
   })
 

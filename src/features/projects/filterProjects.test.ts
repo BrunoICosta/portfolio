@@ -4,7 +4,7 @@ import { countByFilter, filterProjects } from './filterProjects'
 
 const project = (repo: string, category: Project['category']): Project => ({
   repo,
-  title: repo.toUpperCase(),
+  title: { 'pt-BR': repo.toUpperCase(), en: repo.toUpperCase() },
   category,
   description: { 'pt-BR': '', en: '' },
   tech: [],

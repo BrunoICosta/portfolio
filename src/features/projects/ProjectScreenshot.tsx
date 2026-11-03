@@ -17,7 +17,8 @@ interface ProjectScreenshotProps {
  * broken image icon.
  */
 export function ProjectScreenshot({ project }: ProjectScreenshotProps) {
-  const { t } = useI18n()
+  const { t, language } = useI18n()
+  const title = project.title[language]
   const [state, setState] = useState<LoadState>('loading')
 
   // Cached images can finish loading before React attaches onLoad; check on mount.
@@ -32,7 +33,7 @@ export function ProjectScreenshot({ project }: ProjectScreenshotProps) {
           ref={imageRef}
           className={styles.image}
           src={getScreenshotUrl(project)}
-          alt={t.projects.screenshotAlt(project.title)}
+          alt={t.projects.screenshotAlt(title)}
           width={1280}
           height={800}
           loading="lazy"
@@ -44,7 +45,7 @@ export function ProjectScreenshot({ project }: ProjectScreenshotProps) {
 
       {state === 'error' && (
         <div className={styles.fallback} aria-hidden="true">
-          <span className={styles.monogram}>{toMonogram(project.title)}</span>
+          <span className={styles.monogram}>{toMonogram(title)}</span>
           <span className={styles.fallbackText}>
             <Icon name="image" size={14} />
             {t.projects.screenshotFallback}
