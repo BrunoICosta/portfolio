@@ -1,7 +1,16 @@
+import type { Localized } from '../core/i18n/language'
+
+/**
+ * Public contact address per language (Cloudflare Email Routing forwards both to the same inbox).
+ */
+export const CONTACT_EMAIL: Localized = {
+  'pt-BR': 'contato@brunoisaac.dev',
+  en: 'hello@brunoisaac.dev',
+}
+
 export const PROFILE = {
   name: 'Bruno Vinicius Isaac Costa',
   shortName: 'Bruno Costa',
-  email: 'brunoisaacosta@hotmail.com',
   githubUser: 'BrunoICosta',
   githubUrl: 'https://github.com/BrunoICosta',
   siteUrl: 'https://portfolio.brunoisaac.dev/',

@@ -1,22 +1,33 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
+import { LANGUAGE_STORAGE_KEY } from '../../core/i18n/language'
 import { renderWithProviders } from '../../test/render'
 import { LINKEDIN_URL } from '../../data/profile'
 import { Contact } from './Contact'
 
 describe('Contact', () => {
-  it('links to email and GitHub', () => {
+  it('links to the Portuguese contact email and GitHub', () => {
     renderWithProviders(<Contact />)
 
-    expect(screen.getByRole('link', { name: /brunoisaacosta@hotmail\.com/ })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /contato@brunoisaac\.dev/ })).toHaveAttribute(
       'href',
-      'mailto:brunoisaacosta@hotmail.com',
+      'mailto:contato@brunoisaac.dev',
     )
     const github = screen.getByRole('link', { name: /GitHub/ })
     expect(github).toHaveAttribute('href', 'https://github.com/BrunoICosta')
     expect(github).toHaveAttribute('target', '_blank')
     expect(github).toHaveAttribute('rel', 'noopener noreferrer')
+  })
+
+  it('uses the English contact email in English', () => {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, 'en')
+    renderWithProviders(<Contact />)
+
+    expect(screen.getByRole('link', { name: /hello@brunoisaac\.dev/ })).toHaveAttribute(
+      'href',
+      'mailto:hello@brunoisaac.dev',
+    )
   })
 
   it('links to the LinkedIn profile', () => {
@@ -33,7 +44,7 @@ describe('Contact', () => {
 
     await user.click(screen.getByRole('button', { name: 'Copiar e-mail' }))
 
-    expect(writeText).toHaveBeenCalledWith('brunoisaacosta@hotmail.com')
+    expect(writeText).toHaveBeenCalledWith('contato@brunoisaac.dev')
     expect(await screen.findByText('E-mail copiado!')).toBeInTheDocument()
   })
 

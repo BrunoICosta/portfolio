@@ -1,5 +1,5 @@
 import { useI18n } from '../../core/i18n/useI18n'
-import { LINKEDIN_URL, PROFILE } from '../../data/profile'
+import { CONTACT_EMAIL, LINKEDIN_URL, PROFILE } from '../../data/profile'
 import { ExternalLink } from '../../shared/components/ExternalLink'
 import { Icon } from '../../shared/components/Icon'
 import { Section, SectionHeading } from '../../shared/components/Section'
@@ -8,7 +8,8 @@ import { Reveal } from '../../shared/motion/Reveal'
 import styles from './Contact.module.css'
 
 export function Contact() {
-  const { t } = useI18n()
+  const { t, language } = useI18n()
+  const email = CONTACT_EMAIL[language]
   const { status, copy } = useCopyToClipboard()
 
   return (
@@ -22,16 +23,16 @@ export function Contact() {
         />
 
         <div className={styles.emailRow}>
-          <a href={`mailto:${PROFILE.email}`} className={styles.email}>
+          <a href={`mailto:${email}`} className={styles.email}>
             <Icon name="mail" size={22} />
             <span>
-              <span className="visually-hidden">{t.contact.email}:</span> {PROFILE.email}
+              <span className="visually-hidden">{t.contact.email}:</span> {email}
             </span>
           </a>
           <button
             type="button"
             className={styles.copy}
-            onClick={() => void copy(PROFILE.email)}
+            onClick={() => void copy(email)}
             data-status={status}
           >
             <Icon name={status === 'copied' ? 'check' : 'copy'} size={16} />
