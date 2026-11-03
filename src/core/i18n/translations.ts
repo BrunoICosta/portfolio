@@ -20,6 +20,7 @@ const ptBR = {
   },
   nav: {
     about: 'Sobre',
+    experience: 'Experiência',
     skills: 'Habilidades',
     projects: 'Projetos',
     contact: 'Contato',
@@ -37,16 +38,29 @@ const ptBR = {
   },
   about: {
     title: 'Sobre mim',
+    photoAlt: 'Foto de Bruno Vinicius Isaac Costa',
     paragraphs: [
-      'Sou desenvolvedor front-end e gosto de transformar requisitos em interfaces claras, rápidas e fáceis de manter. Trabalho principalmente com Angular e React, sempre com TypeScript.',
-      'No dia a dia me preocupo com arquitetura de componentes, estado previsível (RxJS, NgRx, Signals, Zustand), testes automatizados e acessibilidade. Acredito que um bom front-end é aquele que ninguém precisa notar, porque tudo funciona como deveria.',
-      'Este portfólio reúne projetos que construí para explorar e demonstrar essas práticas. Todos têm código aberto, testes, pipeline de CI e demo publicada.',
+      'Sou desenvolvedor front-end com mais de 6 anos de experiência, a maior parte no setor financeiro, em projetos para Banco do Brasil, Bradesco e Banco Safra pelas consultorias Capgemini, Everis/NTT DATA e ACT Digital.',
+      'Hoje sou referência técnica em diversos sistemas no Banco Safra, conduzindo o time com code review, documentação e apoio a desenvolvedores júnior, pleno e sênior. Domino Angular do AngularJS às versões modernas, com standalone components e signals, e uso React e Next.js nos meus projetos, sempre com TypeScript.',
+      'No dia a dia me preocupo com arquitetura de componentes, performance (já reduzi o carregamento de páginas de 10 s para 600 ms), testes automatizados e acessibilidade. Acredito que um bom front-end é aquele que ninguém precisa notar, porque tudo funciona como deveria.',
+      'Este portfólio reúne projetos que construí para demonstrar essas práticas, todos com código aberto, testes, CI e demo publicada.',
     ],
     highlights: [
-      { value: '11', label: 'projetos open source' },
-      { value: '2', label: 'ecossistemas: Angular e React' },
-      { value: '100%', label: 'TypeScript estrito' },
+      { value: '6+', label: 'anos de experiência' },
+      { value: '3', label: 'grandes bancos atendidos' },
+      { value: '10 s → 0,6 s', label: 'carregamento de página otimizado' },
     ],
+  },
+  experience: {
+    title: 'Por onde passei',
+    intro:
+      'Mais de 6 anos construindo aplicações web para o setor financeiro, de migrações de AngularJS para Angular à liderança técnica de times.',
+    timelineLabel: 'Linha do tempo profissional',
+    client: 'cliente',
+    current: 'Atual',
+    techLabel: 'Tecnologias e práticas',
+    educationTitle: 'Formação e certificações',
+    resume: 'Baixar currículo completo',
   },
   skills: {
     title: 'Habilidades',
@@ -116,6 +130,7 @@ const en: Dictionary = {
   },
   nav: {
     about: 'About',
+    experience: 'Experience',
     skills: 'Skills',
     projects: 'Projects',
     contact: 'Contact',
@@ -133,16 +148,29 @@ const en: Dictionary = {
   },
   about: {
     title: 'About me',
+    photoAlt: 'Photo of Bruno Vinicius Isaac Costa',
     paragraphs: [
-      'I am a front-end developer who enjoys turning requirements into clear, fast and maintainable interfaces. I work mostly with Angular and React, always with TypeScript.',
-      'Day to day I care about component architecture, predictable state (RxJS, NgRx, Signals, Zustand), automated tests and accessibility. I believe good front-end is the kind nobody has to think about, because everything works the way it should.',
-      'This portfolio gathers projects I built to explore and showcase those practices. Every one of them is open source, tested, has a CI pipeline and a live demo.',
+      'I am a front-end developer with more than 6 years of experience, mostly in the financial sector, working on projects for Banco do Brasil, Bradesco and Banco Safra through the consultancies Capgemini, Everis/NTT DATA and ACT Digital.',
+      'Today I am a technical reference for several systems at Banco Safra, guiding the team through code review, documentation and support for junior, mid-level and senior developers. I master Angular from AngularJS to the modern versions, with standalone components and signals, and I use React and Next.js in my own projects, always with TypeScript.',
+      'Day to day I care about component architecture, performance (I have cut page load times from 10 s to 600 ms), automated tests and accessibility. I believe good front-end is the kind nobody has to notice, because everything works the way it should.',
+      'This portfolio gathers projects I built to showcase those practices, all of them open source, tested, with CI and a live demo.',
     ],
     highlights: [
-      { value: '11', label: 'open source projects' },
-      { value: '2', label: 'ecosystems: Angular and React' },
-      { value: '100%', label: 'strict TypeScript' },
+      { value: '6+', label: 'years of experience' },
+      { value: '3', label: 'major banks served' },
+      { value: '10 s → 0.6 s', label: 'page load optimized' },
     ],
+  },
+  experience: {
+    title: "Where I've worked",
+    intro:
+      'More than 6 years building web applications for the financial sector, from AngularJS to Angular migrations to leading teams technically.',
+    timelineLabel: 'Professional timeline',
+    client: 'client',
+    current: 'Current',
+    techLabel: 'Technologies and practices',
+    educationTitle: 'Education and certifications',
+    resume: 'Download full resume',
   },
   skills: {
     title: 'Skills',

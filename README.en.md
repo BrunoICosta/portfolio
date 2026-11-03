@@ -13,7 +13,11 @@ projects, each one linking to its source code and its live demo. This repository
 
 ## Highlights
 
-- Sections: hero, about, skills, projects (filter: All / Angular / React) and contact.
+- Sections: hero, about (with photo), experience, skills, projects (filter: All / Angular / React) and
+  contact.
+- Experience: an accessible timeline (`ol` > `li` > `article`, dates in `<time>`) with role, company and
+  client, period and duration formatted with `Intl` for the active language, education, certifications
+  and a link to download the full resume. Typed data in `src/data/experience.ts`.
 - **Bilingual (pt-BR / EN)**: initial language = saved choice > browser language (`pt*` → pt-BR,
   otherwise en) > pt-BR; flag switcher (Brazil / USA, inline SVG) in the header; `<html lang>`, page title and meta description
   follow the active language. Project cards show a "PT-BR / EN" badge with small flags.

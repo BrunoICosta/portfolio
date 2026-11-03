@@ -11,6 +11,21 @@ export function About() {
       <SectionHeading section="about" title={t.about.title} />
 
       <div className={styles.layout}>
+        <Reveal className={styles.photoFrame}>
+          <picture>
+            <source srcSet="/img/bruno.webp" type="image/webp" />
+            <img
+              className={styles.photo}
+              src="/img/bruno.jpg"
+              alt={t.about.photoAlt}
+              width={640}
+              height={800}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </Reveal>
+
         <Reveal className={styles.text}>
           {t.about.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>

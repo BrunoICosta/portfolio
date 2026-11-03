@@ -2,6 +2,7 @@ import { useI18n } from './core/i18n/useI18n'
 import { MAIN_CONTENT_ID } from './core/sections'
 import { About } from './features/about/About'
 import { Contact } from './features/contact/Contact'
+import { Experience } from './features/experience/Experience'
 import { Footer } from './features/footer/Footer'
 import { Header } from './features/header/Header'
 import { Hero } from './features/hero/Hero'
@@ -20,6 +21,7 @@ function App() {
       <main id={MAIN_CONTENT_ID} tabIndex={-1}>
         <Hero />
         <About />
+        <Experience />
         <Skills />
         <ProjectsSection />
         <Contact />

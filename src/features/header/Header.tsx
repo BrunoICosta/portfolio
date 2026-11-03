@@ -37,8 +37,16 @@ export function Header() {
     <header ref={headerRef} className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <a href="#content" className={styles.logo} aria-label={t.header.homeLink}>
-          <span className={styles.mark} aria-hidden="true">
-            BC
+          <span className={styles.mark}>
+            {/* Decorative: the link already has an accessible name (aria-label). */}
+            <img
+              className={styles.avatar}
+              src="/img/bruno-avatar.webp"
+              alt=""
+              width={36}
+              height={36}
+              decoding="async"
+            />
           </span>
           <span className={styles.logoText} aria-hidden="true">
             Bruno Costa

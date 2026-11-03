@@ -14,7 +14,11 @@ TypeScript e Vite, sem framework de CSS e com animações discretas. Este reposi
 
 ## Funcionalidades
 
-- **Hero, Sobre, Habilidades, Projetos e Contato** em uma página com navegação por âncoras e header fixo.
+- **Hero, Sobre, Experiência, Habilidades, Projetos e Contato** em uma página com navegação por âncoras e
+  header fixo (com foto no lugar do monograma).
+- **Experiência**: linha do tempo acessível (`ol` > `li` > `article`, datas em `<time>`) com cargo,
+  empresa e cliente, período e duração formatados com `Intl` no idioma ativo, formação, certificações
+  e link para baixar o currículo completo. Dados tipados em `src/data/experience.ts`.
 - **Bilíngue (pt-BR / EN)**: idioma inicial pela escolha salva > idioma do navegador > pt-BR, seletor com
   bandeiras (Brasil / EUA) no header e badge "PT-BR / EN" com bandeirinhas nos cards (todos os projetos também são bilíngues).
 - **Tema claro/escuro**: segue o sistema operacional na primeira visita e lembra a escolha; aplicado
@@ -207,8 +211,8 @@ npm run cf:dev       # Worker + assets localmente com wrangler dev
     │   ├── theme/           # tema claro/escuro, provider, hook useTheme
     │   ├── sections.ts      # ids das seções (âncoras)
     │   └── storage.ts       # localStorage seguro
-    ├── data/                # profile.ts, projects.ts, skills.ts (conteúdo tipado)
-    ├── features/            # header, hero, about, skills, projects, contact, footer
+    ├── data/                # profile, experience, projects, skills (conteúdo tipado)
+    ├── features/            # header, hero, about, experience, skills, projects, contact, footer
     ├── shared/
     │   ├── components/      # Section, ButtonLink, ExternalLink, Icon
     │   ├── hooks/           # useCopyToClipboard

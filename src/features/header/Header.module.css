@@ -26,22 +26,30 @@
   letter-spacing: -0.01em;
 }
 
+/* Circular photo with the Angular -> React gradient as a ring. */
 .mark {
   display: grid;
   place-items: center;
+  flex-shrink: 0;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: var(--radius-md);
+  padding: 2px;
+  border-radius: 50%;
   background: linear-gradient(
     135deg,
     var(--color-angular),
     var(--color-accent) 55%,
     var(--color-react)
   );
-  color: #fff;
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  letter-spacing: 0.02em;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--color-bg);
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--color-surface);
 }
 
 .logoText {

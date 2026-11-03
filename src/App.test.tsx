@@ -11,7 +11,13 @@ describe('App', () => {
     expect(
       screen.getByRole('heading', { level: 1, name: /Bruno Vinicius Isaac Costa/ }),
     ).toBeInTheDocument()
-    for (const name of ['Sobre mim', 'Habilidades', 'Projetos', 'Vamos conversar?']) {
+    for (const name of [
+      'Sobre mim',
+      'Por onde passei',
+      'Habilidades',
+      'Projetos',
+      'Vamos conversar?',
+    ]) {
       expect(screen.getByRole('heading', { level: 2, name })).toBeInTheDocument()
     }
     expect(screen.getByRole('link', { name: 'Pular para o conteúdo' })).toHaveAttribute(
@@ -24,7 +30,7 @@ describe('App', () => {
     localStorage.setItem(LANGUAGE_STORAGE_KEY, 'en')
     renderWithProviders(<App />)
 
-    for (const name of ['About me', 'Skills', 'Projects', "Let's talk?"]) {
+    for (const name of ['About me', "Where I've worked", 'Skills', 'Projects', "Let's talk?"]) {
       expect(screen.getByRole('heading', { level: 2, name })).toBeInTheDocument()
     }
     expect(document.documentElement.lang).toBe('en')

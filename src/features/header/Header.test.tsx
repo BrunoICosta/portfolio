@@ -14,7 +14,21 @@ describe('Header', () => {
       within(nav)
         .getAllByRole('link')
         .map((link) => link.textContent),
-    ).toEqual(['Sobre', 'Habilidades', 'Projetos', 'Contato'])
+    ).toEqual(['Sobre', 'Experiência', 'Habilidades', 'Projetos', 'Contato'])
+  })
+
+  it('shows the profile photo inside the home link', () => {
+    renderWithProviders(<Header />)
+
+    const home = screen.getByRole('link', { name: 'Bruno Costa, voltar ao início' })
+    const photo = home.querySelector('img')
+    expect(photo).toHaveAttribute('src', '/img/bruno-avatar.webp')
+    // Decorative: the link's aria-label already names it.
+    expect(photo).toHaveAttribute('alt', '')
+    expect(photo).toHaveAttribute('width', '36')
+    expect(photo).toHaveAttribute('height', '36')
+    expect(photo).toHaveAttribute('decoding', 'async')
+    expect(screen.queryByText('BC')).not.toBeInTheDocument()
   })
 
   it('switches the language, marks it as current and saves it', async () => {
