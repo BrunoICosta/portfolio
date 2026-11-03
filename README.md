@@ -1,10 +1,10 @@
-# Bruno Costa — Portfólio
+# Bruno Costa | Portfólio
 
 > **English:** [README.en.md](./README.en.md)
 
 Site pessoal de **Bruno Vinicius Isaac Costa**, desenvolvedor front-end (Angular & React). Uma página
 única, rápida e acessível que apresenta quem sou, minhas habilidades e uma vitrine filtrável dos meus
-projetos open source — cada um com link para o código e para a demo ao vivo. Feito com React 19,
+projetos open source, cada um com link para o código e para a demo ao vivo. Feito com React 19,
 TypeScript e Vite, sem framework de CSS e com animações discretas. Este repositório também é o
 **agregador de deploy**: publica o portfólio e os 11 apps em um único Worker da Cloudflare.
 
@@ -21,7 +21,7 @@ TypeScript e Vite, sem framework de CSS e com animações discretas. Este reposi
   antes da primeira pintura (sem "flash" de tema errado).
 - **Projetos filtráveis** (Todos / Angular / React) com contagem anunciada para leitores de tela.
 - **Cards de projeto** com descrição, badges de tecnologia, links "Código" e "Demo" e screenshot carregado
-  de `docs/screenshot.png` de cada repositório — com _skeleton_ durante o carregamento e um placeholder
+  de `docs/screenshot.png` de cada repositório, com _skeleton_ durante o carregamento e um placeholder
   elegante quando a imagem ainda não existe.
 - **Contato** por e-mail (`mailto:` + botão "copiar e-mail" com feedback) e GitHub. O link do LinkedIn
   fica oculto enquanto a constante `LINKEDIN_URL` estiver vazia.
@@ -50,7 +50,7 @@ TypeScript e Vite, sem framework de CSS e com animações discretas. Este reposi
 - **`core` / `features` / `shared` / `data`.** `core` guarda infraestrutura (tema, i18n, storage),
   `features` tem uma pasta por seção, `shared` reúne componentes genéricos e `data` concentra o
   conteúdo tipado (`projects.ts`, `skills.ts`, `profile.ts`). Para adicionar um projeto basta incluir
-  um objeto em `src/data/projects.ts` — o TypeScript garante descrição nos dois idiomas.
+  um objeto em `src/data/projects.ts`; o TypeScript garante descrição nos dois idiomas.
 - **i18n próprio e tipado em vez de uma biblioteca.** Veja [Internacionalização](#internacionalização).
 - **CSS Modules + tokens.** Cores, espaçamentos, raios e sombras são variáveis CSS; o tema escuro só
   redefine os tokens em `[data-theme='dark']`. Sem runtime de CSS-in-JS e sem classes utilitárias.
@@ -73,8 +73,8 @@ mensagens de estado (filtro, cópia de e-mail), `document.title` e a meta descri
   o tipo `Dictionary`; o inglês é declarado como `const en: Dictionary`, então qualquer chave faltando
   ou sobrando é erro de compilação (e um teste compara as chaves dos dois idiomas).
 - Textos com variáveis são funções tipadas, ex.: `projects.count(n)` → "1 projeto" / "5 projetos".
-- Conteúdo de dados usa `Localized<string>` (`{ 'pt-BR': …, en: … }`) — por exemplo a descrição de cada
-  projeto em `src/data/projects.ts` — ou `Translatable` quando o texto pode ser neutro ("TypeScript").
+- Conteúdo de dados usa `Localized<string>` (`{ 'pt-BR': …, en: … }`), por exemplo a descrição de cada
+  projeto em `src/data/projects.ts`, ou `Translatable` quando o texto pode ser neutro ("TypeScript").
 - O `I18nProvider` expõe `{ language, t, setLanguage }` via `useI18n()` e sincroniza
   `<html lang>`, `document.title` e a meta description sempre que o idioma muda.
 - **Idioma inicial:** escolha salva (`localStorage`, chave `bc-lang`) > idioma do navegador
@@ -90,14 +90,14 @@ mensagens de estado (filtro, cópia de e-mail), `document.title` e a meta descri
 
 **Por que não i18next?** Com ~80 strings e dois idiomas, um dicionário tipado entrega a mesma segurança
 (chaves verificadas pelo compilador) sem dependência extra, sem carregamento assíncrono e sem custo no
-bundle — o que ajuda a manter o Lighthouse perto de 100. Se o site crescer (namespaces, pluralização
+bundle, o que ajuda a manter o Lighthouse perto de 100. Se o site crescer (namespaces, pluralização
 complexa, muitos idiomas), migrar para i18next é direto: os dicionários já são objetos aninhados.
 
 **Como adicionar um idioma (ex.: espanhol)**
 
 1. Inclua o código em `LANGUAGES` e um rótulo em `LANGUAGE_LABELS` (`src/core/i18n/language.ts`) e ajuste
    `detectBrowserLanguage` (ex.: `es*` → `es`).
-2. Crie `const es: Dictionary = { … }` em `translations.ts` e registre em `translations` — o compilador
+2. Crie `const es: Dictionary = { … }` em `translations.ts` e registre em `translations`; o compilador
    aponta tudo o que falta.
 3. Adicione a chave `es` aos campos `Localized` em `src/data/` (o TypeScript também aponta).
 4. Atualize o script inline do `index.html` e rode `npm test`.
@@ -226,7 +226,7 @@ npm run cf:dev       # Worker + assets localmente com wrangler dev
 
 ## Autor
 
-**Bruno Vinicius Isaac Costa** — https://github.com/BrunoICosta · [LinkedIn](https://www.linkedin.com/in/bruno-vin%C3%ADcius-isaac-costa-a90758156/) · brunoisaacosta@hotmail.com
+**Bruno Vinicius Isaac Costa** · https://github.com/BrunoICosta · [LinkedIn](https://www.linkedin.com/in/bruno-vin%C3%ADcius-isaac-costa-a90758156/) · brunoisaacosta@hotmail.com
 
 ## Licença
 

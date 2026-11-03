@@ -25,9 +25,9 @@ describe('ProjectCard', () => {
       screen.getByText('Interface disponível em: Português (Brasil), English'),
     ).toBeInTheDocument()
 
-    const code = screen.getByRole('link', { name: /^Código — Kanban Board/ })
+    const code = screen.getByRole('link', { name: /^Código: Kanban Board/ })
     expect(code).toHaveAttribute('href', 'https://github.com/BrunoICosta/angular-kanban-board')
-    const demo = screen.getByRole('link', { name: /^Demo — Kanban Board \(abre em nova aba\)/ })
+    const demo = screen.getByRole('link', { name: /^Demo: Kanban Board \(abre em nova aba\)/ })
     expect(demo).toHaveAttribute('href', 'https://portfolio.brunoisaac.dev/angular-kanban-board/')
   })
 
@@ -39,7 +39,7 @@ describe('ProjectCard', () => {
     expect(
       screen.getByText('Interface available in: Português (Brasil), English'),
     ).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /^Code — Kanban Board/ })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /^Code: Kanban Board/ })).toBeInTheDocument()
     expect(screen.getAllByRole('link', { name: /\(opens in a new tab\)$/ })).toHaveLength(2)
   })
 

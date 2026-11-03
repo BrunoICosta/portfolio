@@ -1,10 +1,10 @@
-# Bruno Costa — Portfolio
+# Bruno Costa | Portfolio
 
 > **Português:** [README.md](./README.md) (full documentation)
 
 Personal site of **Bruno Vinicius Isaac Costa**, front-end developer (Angular & React). A fast,
 accessible single page with an about section, skills and a filterable showcase of my open source
-projects — each one linking to its source code and its live demo. This repository is also the
+projects, each one linking to its source code and its live demo. This repository is also the
 **deployment aggregator**: it publishes the portfolio and all 11 apps in a single Cloudflare Worker.
 
 **Live demo:** https://portfolio.brunoisaac.dev/
@@ -34,7 +34,7 @@ Vitest 5 + Testing Library · ESLint 10 + typescript-eslint 8 · Prettier 3 · G
 Typed dictionaries in `src/core/i18n/translations.ts`: pt-BR defines the `Dictionary` type and English
 must match it exactly, so a missing key is a compile error. Data content uses `Localized<string>`.
 No i18n library is needed for ~80 strings, which keeps the bundle small. To add a language, extend
-`LANGUAGES`/`LANGUAGE_LABELS`, add a dictionary and fill the `Localized` fields — the compiler lists
+`LANGUAGES`/`LANGUAGE_LABELS`, add a dictionary and fill the `Localized` fields, the compiler lists
 everything that is missing.
 
 ## Deploy
@@ -74,6 +74,6 @@ npm run build   # type-check + production build
 
 ## Author
 
-**Bruno Vinicius Isaac Costa** — https://github.com/BrunoICosta · [LinkedIn](https://www.linkedin.com/in/bruno-vin%C3%ADcius-isaac-costa-a90758156/) · brunoisaacosta@hotmail.com
+**Bruno Vinicius Isaac Costa** · https://github.com/BrunoICosta · [LinkedIn](https://www.linkedin.com/in/bruno-vin%C3%ADcius-isaac-costa-a90758156/) · brunoisaacosta@hotmail.com
 
 License: [MIT](./LICENSE)

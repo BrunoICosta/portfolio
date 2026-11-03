@@ -2,7 +2,7 @@ import type { Language } from './language'
 
 const ptBR = {
   meta: {
-    title: 'Bruno Costa — Desenvolvedor Front-end Angular & React',
+    title: 'Bruno Costa | Desenvolvedor Front-end Angular & React',
     description:
       'Portfólio de Bruno Vinicius Isaac Costa, desenvolvedor front-end especializado em Angular e React, com foco em TypeScript, testes e acessibilidade.',
   },
@@ -11,7 +11,7 @@ const ptBR = {
     opensInNewTab: '(abre em nova aba)',
   },
   header: {
-    homeLink: 'Bruno Costa — voltar ao início',
+    homeLink: 'Bruno Costa, voltar ao início',
     navLabel: 'Navegação principal',
     themeToDark: 'Ativar tema escuro',
     themeToLight: 'Ativar tema claro',
@@ -29,7 +29,7 @@ const ptBR = {
     role: 'Desenvolvedor Front-end',
     stack: 'Angular & React',
     tagline:
-      'Construo interfaces rápidas, acessíveis e bem testadas — de painéis complexos em Angular a aplicações React focadas na experiência de quem usa.',
+      'Construo interfaces rápidas e acessíveis, de painéis complexos em Angular a aplicações React focadas na experiência do usuário.',
     ctaProjects: 'Ver projetos',
     ctaContact: 'Fale comigo',
     availability: 'Aberto a novas oportunidades',
@@ -38,7 +38,7 @@ const ptBR = {
     title: 'Sobre mim',
     paragraphs: [
       'Sou desenvolvedor front-end e gosto de transformar requisitos em interfaces claras, rápidas e fáceis de manter. Trabalho principalmente com Angular e React, sempre com TypeScript.',
-      'No dia a dia me preocupo com arquitetura de componentes, estado previsível (RxJS, NgRx, Signals, Zustand), testes automatizados e acessibilidade. Para mim, um bom front-end é aquele que a pessoa usuária nem percebe: simplesmente funciona.',
+      'No dia a dia me preocupo com arquitetura de componentes, estado previsível (RxJS, NgRx, Signals, Zustand), testes automatizados e acessibilidade. Acredito que um bom front-end é aquele que ninguém precisa notar, porque tudo funciona como deveria.',
       'Este portfólio reúne projetos que construí para explorar e demonstrar essas práticas. Todos têm código aberto, testes, pipeline de CI e demo publicada.',
     ],
     highlights: [
@@ -96,7 +96,7 @@ export type Dictionary = typeof ptBR
 
 const en: Dictionary = {
   meta: {
-    title: 'Bruno Costa — Front-end Developer, Angular & React',
+    title: 'Bruno Costa | Front-end Developer, Angular & React',
     description:
       'Portfolio of Bruno Vinicius Isaac Costa, a front-end developer specialized in Angular and React, focused on TypeScript, testing and accessibility.',
   },
@@ -105,7 +105,7 @@ const en: Dictionary = {
     opensInNewTab: '(opens in a new tab)',
   },
   header: {
-    homeLink: 'Bruno Costa — back to top',
+    homeLink: 'Bruno Costa, back to top',
     navLabel: 'Main navigation',
     themeToDark: 'Switch to dark theme',
     themeToLight: 'Switch to light theme',
@@ -123,7 +123,7 @@ const en: Dictionary = {
     role: 'Front-end Developer',
     stack: 'Angular & React',
     tagline:
-      'I build fast, accessible and well-tested interfaces — from complex Angular dashboards to React apps focused on the people who use them.',
+      'I build fast, accessible interfaces, from complex Angular dashboards to React apps focused on user experience.',
     ctaProjects: 'See projects',
     ctaContact: 'Get in touch',
     availability: 'Open to new opportunities',
@@ -132,7 +132,7 @@ const en: Dictionary = {
     title: 'About me',
     paragraphs: [
       'I am a front-end developer who enjoys turning requirements into clear, fast and maintainable interfaces. I work mostly with Angular and React, always with TypeScript.',
-      'Day to day I care about component architecture, predictable state (RxJS, NgRx, Signals, Zustand), automated tests and accessibility. To me, good front-end is the kind users never notice: it just works.',
+      'Day to day I care about component architecture, predictable state (RxJS, NgRx, Signals, Zustand), automated tests and accessibility. I believe good front-end is the kind nobody has to think about, because everything works the way it should.',
       'This portfolio gathers projects I built to explore and showcase those practices. Every one of them is open source, tested, has a CI pipeline and a live demo.',
     ],
     highlights: [
